@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="startPageVM" type="com.examonline.app.modules.startpage.data.viewmodel.StartPageVM"/>
+    </data>
+    <FrameLayout android:id="@+id/frame"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" style="@style/groupStylewhite_A700">
+
+        <ImageView
+            android:id="@+id/image"
+            imageRes="@{@drawable/img_background}"
+            android:layout_width="705dp"
+            android:layout_height="1025dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            tools:src="@drawable/img_background" />
+        <LinearLayout android:id="@+id/linear"
+            android:layout_gravity="center|start"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_163pxv"
+            android:layout_marginEnd="@dimen/_108pxh"
+            android:layout_marginStart="@dimen/_51pxh"
+            android:layout_marginTop="220dp"
+            android:layout_width="match_parent" android:orientation="vertical">
+            <ImageView android:id="@+id/image1"
+                android:layout_gravity="start"
+                android:layout_height="120dp"
+                android:layout_width="120dp"
+                android:scaleType="fitXY" android:src="@drawable/ic_baseline_menu_book_24"/>
+            <FrameLayout android:gravity="center"
+                android:id="@+id/frame1"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4pxv" android:layout_width="match_parent">
+                <pl.droidsonroids.gif.GifImageView android:id="@+id/image2"
+                    android:layout_gravity="bottom|end"
+                    android:layout_height="@dimen/_72pxv"
+                    android:layout_width="@dimen/_72pxh"
+                    android:layout_marginBottom="@dimen/_35pxh"
+                    android:src="@drawable/loader"
+                    />
+
+                <TextView android:gravity="center|start"
+                    android:id="@+id/txtOnlineExam"
+                    android:layout_gravity="center|start"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_23pxv"
+                    android:layout_marginEnd="@dimen/_23pxh"
+                    android:layout_width="match_parent"
+                    android:text="@{startPageVM.startPageModel.txtOnlineExam}"
+                    style="@style/txtNunitoregular48" tools:text="@string/lbl_online_exam"/>
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

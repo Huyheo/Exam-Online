@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="otpVM" type="com.examonline.app.modules.otp.data.viewmodel.OtpVM"/>
+    </data>
+    <FrameLayout android:id="@+id/frame"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" style="@style/groupStylewhite_A700">
+        <ImageView android:id="@+id/image"
+            android:layout_width="705dp"
+            android:layout_height="1025dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            imageRes="@{@drawable/img_background_3}" tools:src="@drawable/img_background_3"/>
+        <FrameLayout android:id="@+id/frame1"
+            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/_29pxv"
+            android:layout_marginTop="@dimen/_10pxv" android:layout_width="match_parent">
+            <LinearLayout android:id="@+id/linear"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_21pxv"
+                android:layout_width="match_parent" android:orientation="vertical">
+                <TextView android:gravity="center"
+                    android:id="@+id/txtVerifyOtp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_99pxh"
+                    android:layout_marginStart="@dimen/_99pxh"
+                    android:layout_width="wrap_content"
+                    android:text="@{otpVM.otpModel.txtVerifyOtp}"
+                    style="@style/txtUbuntubold30" tools:text="@string/lbl_verify_otp"/>
+                <TextView android:gravity="top|center"
+                    android:id="@+id/txtPleaseEnterTh"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_1pxh"
+                    android:layout_marginTop="@dimen/_110pxv"
+                    android:layout_width="match_parent"
+                    android:text="@{otpVM.otpModel.txtPleaseEnterTh}"
+                    style="@style/txtUbuntubold17" tools:text="@string/msg_please_enter_th"/>
+                <LinearLayout android:id="@+id/linear1"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_38pxh"
+                    android:layout_marginStart="@dimen/_38pxh"
+                    android:layout_marginTop="@dimen/_71pxv"
+                    android:layout_width="match_parent" android:orientation="vertical">
+<!--                    <LinearLayout android:id="@+id/linear2"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_12pxh"-->
+<!--                        android:layout_width="match_parent" android:orientation="horizontal">-->
+<!--                        <EditText android:gravity="top|center"-->
+<!--                            android:id="@+id/txt7"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_weight="0.3"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:text="@{otpVM.otpModel.txt7}"-->
+<!--                            style="@style/txtUbuntulight20"-->
+<!--                            tools:hint="@string/lbl_7"/>-->
+
+<!--                        <EditText android:gravity="top|center"-->
+<!--                            android:id="@+id/txt8"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/_63pxh"-->
+<!--                            android:layout_weight="0.3"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:text="@{otpVM.otpModel.txt8}"-->
+<!--                            style="@style/txtUbuntulight20" tools:hint="@string/lbl_7"/>-->
+<!--                        <EditText android:gravity="top|center"-->
+<!--                            android:id="@+id/txt9"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/_59pxh"-->
+<!--                            android:layout_weight="0.3"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:text="@{otpVM.otpModel.txt9}"-->
+<!--                            style="@style/txtUbuntulight20" tools:hint="@string/lbl_7"/>-->
+<!--                        <EditText android:gravity="top|center"-->
+<!--                            android:id="@+id/txt10"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginEnd="@dimen/_13pxh"-->
+<!--                            android:layout_marginStart="@dimen/_45pxh"-->
+<!--                            android:layout_weight="0.3"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:text="@{otpVM.otpModel.txt10}"-->
+<!--                            style="@style/txtUbuntulight20" tools:hint="@string/lbl_7"/>-->
+<!--                    </LinearLayout>-->
+
+                        <com.alimuzaffar.lib.pin.PinEntryEditText
+                            android:id="@+id/txt_pin_entry"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:cursorVisible="false"
+                            android:digits="1234567890"
+                            android:inputType="number"
+                            android:maxLength="4"
+                            android:textIsSelectable="false"
+                            android:textSize="20sp"
+                            app:pinBackgroundDrawable="@drawable/bg_pin"
+                            app:pinAnimationType="fromBottom"
+                            />
+<!--                    <View android:background="@color/indigo_a700"-->
+<!--                        android:id="@+id/line"-->
+<!--                        android:layout_gravity="start"-->
+<!--                        android:layout_marginEnd="@dimen/_7pxh"-->
+<!--                        android:layout_marginStart="@dimen/_7pxh"-->
+<!--                        android:layout_height="@dimen/_1pxv" android:layout_width="@dimen/_45pxh"/>-->
+<!--                    <View android:background="@color/indigo_a700"-->
+<!--                        android:id="@+id/line1"-->
+<!--                        android:layout_gravity="start"-->
+<!--                        android:layout_height="@dimen/_1pxv"-->
+<!--                        android:layout_marginEnd="@dimen/_95pxh"-->
+<!--                        android:layout_marginStart="@dimen/_95pxh" android:layout_width="@dimen/_45pxh"/>-->
+<!--                    <View android:background="@color/indigo_a700"-->
+<!--                        android:id="@+id/line2"-->
+<!--                        android:layout_gravity="end"-->
+<!--                        android:layout_height="@dimen/_1pxv"-->
+<!--                        android:layout_marginEnd="@dimen/_80pxh"-->
+<!--                        android:layout_marginStart="@dimen/_80pxh" android:layout_width="@dimen/_45pxh"/>-->
+<!--                    <View android:background="@color/indigo_a700"-->
+<!--                        android:id="@+id/line3"-->
+<!--                        android:layout_gravity="end"-->
+<!--                        android:layout_height="@dimen/_1pxv" android:layout_width="@dimen/_45pxh"/>-->
+                </LinearLayout>
+                <TextView android:gravity="top|center"
+                    android:id="@+id/txtIfYouDonTRe"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_57pxv"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/_10pxh"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:text="@{otpVM.otpModel.txtIfYouDonTRe}"
+                    style="@style/txtUbuntubold17_1" tools:text="@string/msg_if_you_don_t_re"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnResend"
+                    style="@style/btnSolidRoundedOutline"
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="@dimen/_18pxh"
+                    android:layout_marginTop="@dimen/_123pxv"
+                    android:layout_marginEnd="@dimen/_18pxh"
+                    android:gravity="center"
+                    android:text="@string/lbl_resend"
+                    android:textAllCaps="false"
+                    tools:text="@string/lbl_resend" />
+            </LinearLayout>
+            <ImageView android:id="@+id/image1"
+                android:layout_gravity="top|start"
+                android:layout_height="@dimen/_40pxv"
+                android:layout_marginBottom="@dimen/_563pxv"
+                android:layout_marginEnd="@dimen/_315pxh"
+                android:layout_marginStart="@dimen/_5pxh"
+                android:layout_width="@dimen/_40pxh"
+                android:scaleType="fitXY" android:src="@drawable/img_43"/>
+        </FrameLayout>
+    </FrameLayout>
+</layout>

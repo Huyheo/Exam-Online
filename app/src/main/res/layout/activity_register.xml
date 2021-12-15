@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="registerVM" type="com.examonline.app.modules.register.data.viewmodel.RegisterVM"/>
+    </data>
+    <FrameLayout android:id="@+id/frame"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" style="@style/groupStylewhite_A700">
+        <ImageView android:id="@+id/image"
+            android:layout_width="705dp"
+            android:layout_height="1025dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            imageRes="@{@drawable/img_background_1}" tools:src="@drawable/img_background_1"/>
+        <FrameLayout android:id="@+id/frame1"
+            android:layout_gravity="bottom|center"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginEnd="@dimen/_15pxh"
+            android:layout_marginStart="@dimen/_16pxh"
+            android:layout_marginTop="@dimen/_140pxv" android:layout_width="match_parent">
+
+            <LinearLayout
+                android:id="@+id/linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtRegister"
+                    style="@style/txtNunitobold36"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:gravity="top|start"
+                    android:text="@{registerVM.registerModel.txtRegister}"
+                    tools:text="@string/lbl_register" />
+
+                <TextView
+                    android:id="@+id/txtUserName"
+                    style="@style/txtNunitoregular14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="@dimen/_3pxh"
+                    android:layout_marginTop="@dimen/_7pxv"
+                    android:layout_marginEnd="@dimen/_5pxh"
+                    android:gravity="top|start"
+                    android:text="@{registerVM.registerModel.txtUserName}"
+                    tools:text="@string/lbl_user_name" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fullnameLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_3pxh"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_marginEnd="@dimen/_3pxh"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/gray_500"
+                    app:startIconTint="@color/gray_500"
+                    app:startIconDrawable="@drawable/img_accountoutline"
+                    >
+                    <EditText
+                        android:id="@+id/editUsername"
+                        android:layout_width="@dimen/_281pxh"
+                        android:textColor="@color/blue_600"
+                        android:paddingEnd="@dimen/_50pxh"
+                        android:paddingTop="@dimen/_10pxh"
+                        android:paddingStart="@dimen/_10pxh"
+                        android:layout_height="@dimen/_31pxv"
+                        android:text="@={registerVM.registerModel.etUsername}"
+                        tools:ignore="RtlSymmetry"
+                        android:layout_gravity="start"
+                        android:background="@drawable/rectangle_bg_blue_600_00_border_blue_600_00_radius_10"
+                        android:inputType="textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/txtEmail"
+                    style="@style/txtNunitoregular14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="@dimen/_3pxh"
+                    android:layout_marginTop="@dimen/_7pxv"
+                    android:layout_marginEnd="@dimen/_5pxh"
+                    android:gravity="top|start"
+                    android:text="@{registerVM.registerModel.txtEmail}"
+                    tools:text="@string/lbl_email" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/usernameLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_3pxh"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_marginEnd="@dimen/_3pxh"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/gray_500"
+                    app:startIconTint="@color/gray_500"
+                    app:startIconDrawable="@drawable/img_emailoutline"
+                    >
+                    <EditText
+                        android:id="@+id/editEmailAddress"
+                        android:layout_width="@dimen/_281pxh"
+                        android:layout_height="@dimen/_31pxv"
+                        android:layout_gravity="start"
+                        android:textColor="@color/blue_600"
+                        android:paddingTop="@dimen/_10pxh"
+                        android:text="@={registerVM.registerModel.etEmail}"
+                        android:paddingEnd="@dimen/_50pxh"
+                        tools:ignore="RtlSymmetry"
+                        android:paddingStart="@dimen/_10pxh"
+                        android:background="@drawable/rectangle_bg_blue_600_00_border_blue_600_00_radius_10"
+                        android:inputType="textEmailAddress" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/txtPassword"
+                    style="@style/txtNunitoregular14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/_14pxv"
+                    android:gravity="top|start"
+                    android:text="@{registerVM.registerModel.txtPassword}"
+                    tools:text="@string/lbl_password" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwordLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_3pxh"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_marginEnd="@dimen/_3pxh"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:endIconTint="@color/gray_500"
+                    app:endIconMode="password_toggle"
+                    app:startIconDrawable="@drawable/img_lock"
+                    app:startIconTint="@color/gray_500"
+                    app:endIconDrawable="@drawable/show_password_selector"
+                    >
+                    <EditText
+                        android:id="@+id/editPassword"
+                        android:layout_width="@dimen/_281pxh"
+                        android:layout_height="@dimen/_31pxv"
+                        android:layout_gravity="start"
+                        tools:ignore="RtlSymmetry"
+                        android:textColor="@color/blue_600"
+                        android:paddingTop="@dimen/_10pxh"
+                        android:paddingEnd="@dimen/_50pxh"
+                        android:text="@={registerVM.registerModel.etPassword}"
+                        android:maxLength="20"
+                        android:paddingStart="@dimen/_10pxh"
+                        android:background="@drawable/rectangle_bg_blue_600_00_border_blue_600_00_radius_10"
+                        android:inputType="textPassword" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <TextView
+                    android:id="@+id/txtConfirmPasswor"
+                    style="@style/txtNunitoregular14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/_14pxv"
+                    android:gravity="top|start"
+                    android:text="@{registerVM.registerModel.txtConfirmPassword}"
+                    tools:text="@string/msg_re_enter_new_pa" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwordLayout2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_3pxh"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_marginEnd="@dimen/_3pxh"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:endIconTint="@color/gray_500"
+                    app:endIconMode="password_toggle"
+                    app:startIconDrawable="@drawable/img_lock"
+                    app:startIconTint="@color/gray_500"
+                    app:endIconDrawable="@drawable/show_password_selector"
+                    >
+                    <EditText
+                        android:id="@+id/editConfirmPassword"
+                        android:layout_width="@dimen/_281pxh"
+                        android:layout_height="@dimen/_31pxv"
+                        tools:ignore="RtlSymmetry"
+                        android:textColor="@color/blue_600"
+                        android:paddingEnd="@dimen/_50pxh"
+                        android:paddingTop="@dimen/_10pxh"
+                        android:paddingStart="@dimen/_10pxh"
+                        android:maxLength="20"
+                        android:layout_gravity="start"
+                        android:text="@={registerVM.registerModel.etConfirmpass}"
+                        android:background="@drawable/rectangle_bg_blue_600_00_border_blue_600_00_radius_10"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <LinearLayout
+                    android:id="@+id/linear1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/_3pxh"
+                    android:layout_marginTop="@dimen/_57pxv"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtAlreadyMember"
+                        style="@style/txtNunitobold16"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="@dimen/_10pxv"
+                        android:layout_weight="1"
+                        android:gravity="top|start"
+                        android:text="@{registerVM.registerModel.txtAlreadyMember}"
+                        tools:text="@string/msg_already_member" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnRegister"
+                        style="@style/btnSolidRoundedOutline"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_46pxh"
+                        android:layout_marginTop="@dimen/_20pxh"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:layout_marginBottom="@dimen/_15pxv"
+                        android:layout_weight="0.9"
+                        android:gravity="center"
+                        android:text="@string/lbl_register"
+                        android:textAllCaps="false"
+                        tools:text="@string/lbl_register" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|start"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_250pxv"
+                android:layout_marginEnd="@dimen/_170pxh"
+                android:layout_marginBottom="@dimen/_80pxv"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_auth" />
+        </FrameLayout>
+    </FrameLayout>
+</layout>

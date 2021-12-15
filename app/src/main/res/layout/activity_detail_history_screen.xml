@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="detailHistoryScreenVM" type="com.examonline.app.modules.detailhistoryscreen.data.viewmodel.DetailHistoryScreenVM"/>
+    </data>
+    <LinearLayout android:id="@+id/linear"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStyle">
+        <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" app:contentInsetStart="0dp">
+            <LinearLayout android:id="@+id/linear0"
+                android:layout_gravity="center"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <LinearLayout android:id="@+id/linear21"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_4pxv"
+                    android:layout_marginStart="@dimen/_24pxh"
+                    android:layout_marginTop="@dimen/_4pxv"
+                    android:layout_weight="0.9"
+                    android:layout_width="0dp" android:orientation="horizontal">
+                    <ImageView android:id="@+id/image"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="@dimen/_24pxv"
+                        android:layout_width="@dimen/_24pxh"
+                        android:scaleType="fitXY" android:src="@drawable/img_43"/>
+                    <TextView android:gravity="top|start"
+                        android:id="@+id/txtExamHistory"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_2pxv"
+                        android:layout_marginTop="@dimen/_1pxv"
+                        android:layout_weight="1.5"
+                        android:layout_width="0dp"
+                        android:text="@{detailHistoryScreenVM.detailHistoryScreenModel.txtExamHistory}"
+                        style="@style/txtUbuntumedium18" tools:text="@string/lbl_exam_history"/>
+                </LinearLayout>
+<!--                <View-->
+<!--                    android:background="@drawable/rectangle_bg_gray_400_radius_16"-->
+<!--                    android:id="@+id/view"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_height="@dimen/_32pxv"-->
+<!--                    android:layout_marginEnd="@dimen/_20pxh"-->
+<!--                    android:layout_marginStart="@dimen/_133pxh" android:layout_width="@dimen/_32pxh"/>-->
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+        <LinearLayout
+            android:id="@+id/scrollView"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent">
+            <LinearLayout android:id="@+id/linear3"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" android:orientation="vertical">
+                <TextView android:gravity="top|start"
+                    android:id="@+id/txtMathExam"
+                    android:layout_gravity="start"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_23pxh"
+                    android:layout_marginStart="@dimen/_23pxh"
+                    android:layout_width="wrap_content"
+                    android:text="@{detailHistoryScreenVM.detailHistoryScreenModel.txtMathExam}"
+                    style="@style/txtUbuntumedium18" tools:text="@string/lbl_math_exam"/>
+                <FrameLayout android:id="@+id/frame"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_20pxh">
+                    <ImageView
+                        android:id="@+id/image2"
+                        imageRes="@{@drawable/img_group_1795}"
+                        android:layout_width="@dimen/_600pxh"
+                        android:layout_height="@dimen/_800pxh"
+                        android:layout_gravity="center_horizontal"
+                        tools:src="@drawable/img_group_1795" />
+                    <LinearLayout android:id="@+id/linear4"
+                        android:layout_gravity="start"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_57pxv"
+                        android:layout_marginEnd="@dimen/_23pxh"
+                        android:layout_marginStart="@dimen/_23pxh"
+                        android:layout_marginTop="@dimen/_16pxv"
+                        android:layout_width="match_parent" android:orientation="vertical">
+
+                        <FrameLayout android:id="@+id/frame1"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_13pxv"
+                            android:layout_width="match_parent">
+                            <LinearLayout android:id="@+id/linear5"
+                                android:layout_gravity="center|start"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/_16pxv"
+                                android:layout_marginTop="@dimen/_5pxh"
+                                android:layout_width="match_parent" android:orientation="vertical">
+                                <TextView android:gravity="top|start"
+                                    android:id="@+id/txtBriefExplanati"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="match_parent"
+                                    android:text="@{detailHistoryScreenVM.detailHistoryScreenModel.txtBriefExplanati}"
+                                    style="@style/txtNunitobold16_1" tools:text="@string/msg_brief_explanati"/>
+                                <LinearLayout android:id="@+id/linear6"
+                                    android:layout_gravity="start"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_1pxv"
+                                    android:layout_width="match_parent"
+                                    android:orientation="vertical">
+                                    <LinearLayout
+                                    android:id="@+id/linear1"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="match_parent"
+                                        android:paddingTop="@dimen/_5pxh"
+                                        android:paddingEnd="@dimen/_5pxh"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DuplicateIds">
+                                    <ImageView
+                                        android:id="@+id/image21"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="@dimen/_2pxv"
+                                        android:layout_width="wrap_content"
+                                        android:scaleType="fitXY" android:src="@drawable/img_group_1717_4"/>
+                                        <LinearLayout
+                                            android:id="@+id/linear810"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/_19pxh"
+                                            android:layout_weight="1.6"
+                                            android:layout_width="0dp" android:orientation="vertical">
+                                            <TextView
+                                                android:gravity="top|start"
+                                                android:id="@+id/txt10Question"
+                                                android:layout_gravity="start"
+                                                android:layout_height="wrap_content"
+                                                android:layout_width="wrap_content"
+                                                android:text="@{detailHistoryScreenVM.detailHistoryScreenModel.txt10Question}"
+                                                style="@style/txtUbuntumedium16" tools:text="@string/lbl_10_question"/>
+                                            <TextView
+                                                android:gravity="center"
+                                                android:id="@+id/txt10PointForA"
+                                                android:layout_gravity="center_horizontal"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="@dimen/_3pxv"
+                                                android:layout_width="match_parent"
+                                                android:text="@{detailHistoryScreenVM.detailHistoryScreenModel.txt10PointForA}"
+                                                style="@style/txtNunitoregular14_1"
+                                                tools:text="@string/msg_10_point_for_a"/>
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/linear2"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="match_parent"
+                                        android:paddingTop="@dimen/_5pxh"
+                                        android:paddingEnd="@dimen/_5pxh"
+                                        android:orientation="horizontal">
+                                        <ImageView android:id="@+id/image6"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="@dimen/_2pxv"
+                                            android:layout_width="wrap_content"
+                                            android:scaleType="fitXY" android:src="@drawable/img_group_1717_5"/>
+                                        <LinearLayout
+                                            android:id="@+id/linear82"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/_19pxh"
+                                            android:layout_weight="1.6"
+                                            android:layout_width="0dp" android:orientation="vertical">
+                                            <TextView
+                                                android:gravity="top|start"
+                                                android:id="@+id/txtTotalDuration"
+                                                android:layout_gravity="start"
+                                                android:layout_height="wrap_content"
+                                                android:layout_width="wrap_content"
+                                                android:text="@{detailHistoryScreenVM.detailHistoryScreenModel.txtTotalDuration}"
+                                                style="@style/txtUbuntumedium16" tools:text="@string/lbl_1_hour_15_min"/>
+                                            <TextView
+                                                android:gravity="center"
+                                                android:id="@+id/txtDuration"
+                                                android:layout_gravity="center_horizontal"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="@dimen/_3pxv"
+                                                android:layout_width="match_parent"
+                                                style="@style/txtNunitoregular14_1" android:text="@string/msg_total_duration"/>
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/linear7"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="match_parent"
+                                        android:paddingTop="@dimen/_5pxh"
+                                        android:paddingEnd="@dimen/_5pxh"
+                                        android:orientation="horizontal">
+                                        <ImageView android:id="@+id/image17"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="@dimen/_2pxv"
+                                            android:layout_width="wrap_content"
+                                            android:scaleType="fitXY" android:src="@drawable/img_group_1717_2"/>
+                                        <LinearLayout
+                                            android:id="@+id/linear83"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/_19pxh"
+                                            android:layout_weight="1.6"
+                                            android:layout_width="0dp" android:orientation="vertical">
+                                            <TextView
+                                                android:gravity="top|start"
+                                                android:id="@+id/txtOpen"
+                                                android:layout_gravity="start"
+                                                android:layout_height="wrap_content"
+                                                android:layout_width="wrap_content"
+                                                android:text="@{detailHistoryScreenVM.detailHistoryScreenModel.txtOpen}"
+                                                style="@style/txtUbuntumedium16" tools:text="@string/msg_14_45_23_11_2"/>
+                                            <TextView
+                                                android:gravity="center"
+                                                android:id="@+id/txtTimeOpen"
+                                                android:layout_gravity="center_horizontal"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="@dimen/_3pxv"
+                                                android:layout_width="match_parent"
+                                                style="@style/txtNunitoregular14_1" android:text="@string/lbl_time_open"/>
+                                        </LinearLayout>
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:id="@+id/linear70"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="match_parent"
+                                        android:paddingTop="@dimen/_5pxh"
+                                        android:paddingEnd="@dimen/_5pxh"
+                                        android:orientation="horizontal">
+                                        <ImageView
+                                            android:id="@+id/image20"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="@dimen/_2pxv"
+                                            android:layout_width="wrap_content"
+                                            android:scaleType="fitXY" android:src="@drawable/img_group_1717_3"/>
+                                        <LinearLayout
+                                            android:id="@+id/linear8"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/_19pxh"
+                                            android:layout_weight="1.6"
+                                            android:layout_width="0dp" android:orientation="vertical">
+                                            <TextView
+                                                android:gravity="top|start"
+                                                android:id="@+id/txtClose"
+                                                android:layout_gravity="start"
+                                                android:layout_height="wrap_content"
+                                                android:layout_width="wrap_content"
+                                                android:text="@{detailHistoryScreenVM.detailHistoryScreenModel.txtClose}"
+                                                style="@style/txtUbuntumedium16" tools:text="@string/msg_16_45_23_11_2"/>
+                                            <TextView
+                                                android:gravity="center"
+                                                android:id="@+id/txtTimeClose"
+                                                android:layout_gravity="center_horizontal"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="@dimen/_3pxv"
+                                                android:layout_width="match_parent"
+                                                style="@style/txtNunitoregular14_1" android:text="@string/lbl_time_close"/>
+                                        </LinearLayout>
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </FrameLayout>
+                        <LinearLayout android:id="@+id/linear10"
+                            android:layout_gravity="start"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10pxv"
+                            android:layout_width="match_parent" android:orientation="vertical">
+                            <TextView android:gravity="top|start"
+                                android:id="@+id/txtResultOfExam"
+                                android:layout_gravity="start"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="@{detailHistoryScreenVM.detailHistoryScreenModel.txtResultOfExam}"
+                                style="@style/txtNunitobold16_1" tools:text="@string/lbl_result_of_exam"/>
+<!--                            <LinearLayout android:gravity="center"-->
+<!--                                android:id="@+id/linear11"-->
+<!--                                android:layout_gravity="center_horizontal"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/_12pxv"-->
+<!--                                android:layout_width="match_parent" android:orientation="vertical">-->
+
+<!--                                <LinearLayout android:id="@+id/linear1"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_width="match_parent" android:orientation="horizontal">-->
+<!--                                    <ImageView android:id="@+id/image"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="@dimen/_40pxv"-->
+<!--                                        android:layout_width="@dimen/_40pxh"-->
+<!--                                        android:scaleType="fitXY" android:src="@drawable/img_group_1717_7"/>-->
+<!--                                    <LinearLayout android:id="@+id/linear3"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginStart="@dimen/_21pxh"-->
+<!--                                        android:layout_weight="1.4" android:layout_width="0dp" android:orientation="vertical">-->
+<!--                                        <TextView android:gravity="top|start"-->
+<!--                                            android:id="@+id/txt10Points"-->
+<!--                                            android:layout_gravity="start"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:text="@{detailHistoryScreen2RowModel.txt10Points}"-->
+<!--                                            style="@style/txtUbuntumedium16" tools:text="@string/lbl_10_points"/>-->
+<!--                                        <TextView android:gravity="center"-->
+<!--                                            android:id="@+id/txtMarkOfTheExa"-->
+<!--                                            android:layout_gravity="center_horizontal"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_width="match_parent"-->
+<!--                                            android:text="@{detailHistoryScreen2RowModel.txtMarkOfTheExa}"-->
+<!--                                            style="@style/txtNunitoregular14_1" tools:text="@string/msg_mark_of_the_exa"/>-->
+<!--                                    </LinearLayout>-->
+<!--                                </LinearLayout>-->
+
+<!--                                <LinearLayout android:id="@+id/linear"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_width="match_parent" android:orientation="horizontal">-->
+<!--                                    <ImageView android:id="@+id/image"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="@dimen/_40pxv"-->
+<!--                                        android:layout_width="@dimen/_40pxh"-->
+<!--                                        android:scaleType="fitXY" android:src="@drawable/img_group_1717_1"/>-->
+<!--                                    <LinearLayout android:id="@+id/linear1"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginBottom="@dimen/_9pxv"-->
+<!--                                        android:layout_marginStart="@dimen/_21pxh"-->
+<!--                                        android:layout_weight="1.5" android:layout_width="0dp" android:orientation="vertical">-->
+<!--                                        <TextView android:gravity="start"-->
+<!--                                            android:id="@+id/txt144523112"-->
+<!--                                            android:layout_gravity="center"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_width="match_parent"-->
+<!--                                            style="@style/txtUbuntumedium16" android:text="@string/msg_14_45_23_11_2"/>-->
+<!--                                        <TextView android:gravity="top|start"-->
+<!--                                            android:id="@+id/txtTimeBegin"-->
+<!--                                            android:layout_gravity="start"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:text="@{detailHistoryScreen3RowModel.txtTimeBegin}"-->
+<!--                                            style="@style/txtNunitoregular14_1" tools:text="@string/lbl_time_begin"/>-->
+<!--                                    </LinearLayout>-->
+<!--                                </LinearLayout>                 -->
+<!--                            </LinearLayout>-->
+
+                            <LinearLayout android:id="@+id/linear61"
+                                android:layout_gravity="start"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_1pxv"
+                                android:layout_width="match_parent" android:orientation="vertical">
+                                <LinearLayout
+                                    android:id="@+id/linear14"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="match_parent"
+                                    android:paddingTop="@dimen/_5pxh"
+                                    android:paddingEnd="@dimen/_5pxh"
+                                    android:orientation="horizontal"
+                                    tools:ignore="DuplicateIds">
+                                    <ImageView
+                                        android:id="@+id/image211"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="@dimen/_2pxv"
+                                        android:layout_width="wrap_content"
+                                        android:scaleType="fitXY" android:src="@drawable/img_group_1717_7"/>
+                                    <LinearLayout
+                                        android:id="@+id/linear81"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_19pxh"
+                                        android:layout_weight="1.6"
+                                        android:layout_width="0dp" android:orientation="vertical">
+                                        <TextView
+                                            android:gravity="top|start"
+                                            android:id="@+id/txtMarkOfTheExa"
+                                            android:layout_gravity="start"
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="wrap_content"
+                                            android:text="@{detailHistoryScreenVM.detailHistoryScreenModel.txtMarkOfTheExa}"
+                                            style="@style/txtUbuntumedium16" tools:text="@string/lbl_10_points"/>
+                                        <TextView
+                                            android:gravity="center"
+                                            android:id="@+id/txt10Point"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/_3pxv"
+                                            android:layout_width="match_parent"
+                                            android:text="@{detailHistoryScreenVM.detailHistoryScreenModel.txt10Point}"
+                                            style="@style/txtNunitoregular14_1" tools:text="@string/msg_mark_of_the_exa"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/linear211"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="match_parent"
+                                    android:paddingTop="@dimen/_5pxh"
+                                    android:paddingEnd="@dimen/_5pxh"
+                                    android:orientation="horizontal">
+                                    <ImageView android:id="@+id/image611"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="@dimen/_2pxv"
+                                        android:layout_width="wrap_content"
+                                        android:scaleType="fitXY" android:src="@drawable/img_group_1717_5"/>
+                                    <LinearLayout
+                                        android:id="@+id/linear821"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_19pxh"
+                                        android:layout_weight="1.6"
+                                        android:layout_width="0dp" android:orientation="vertical">
+                                        <TextView
+                                            android:gravity="top|start"
+                                            android:id="@+id/txtTotalDuration1"
+                                            android:layout_gravity="start"
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="wrap_content"
+                                            android:text="@{detailHistoryScreenVM.detailHistoryScreenModel.txtTotalDuration1}"
+                                            style="@style/txtUbuntumedium16" tools:text="@string/lbl_1_hour_11_min"/>
+                                        <TextView
+                                            android:gravity="center"
+                                            android:id="@+id/txtDuration1"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/_3pxv"
+                                            android:layout_width="match_parent"
+                                            style="@style/txtNunitoregular14_1" android:text="@string/msg_total_duration1"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/linear711"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="match_parent"
+                                    android:paddingTop="@dimen/_5pxh"
+                                    android:paddingEnd="@dimen/_5pxh"
+                                    android:orientation="horizontal">
+                                    <ImageView android:id="@+id/image171"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="@dimen/_2pxv"
+                                        android:layout_width="wrap_content"
+                                        android:scaleType="fitXY" android:src="@drawable/img_group_1717_2"/>
+                                    <LinearLayout
+                                        android:id="@+id/linear831"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_19pxh"
+                                        android:layout_weight="1.6"
+                                        android:layout_width="0dp" android:orientation="vertical">
+                                        <TextView
+                                            android:gravity="top|start"
+                                            android:id="@+id/txtStart"
+                                            android:layout_gravity="start"
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="wrap_content"
+                                            android:text="@{detailHistoryScreenVM.detailHistoryScreenModel.txtStart}"
+                                            style="@style/txtUbuntumedium16" tools:text="@string/msg_14_45_23_11_2"/>
+                                        <TextView
+                                            android:gravity="center"
+                                            android:id="@+id/txtTimeStart"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/_3pxv"
+                                            android:layout_width="match_parent"
+                                            style="@style/txtNunitoregular14_1" android:text="@string/lbl_time_start"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/linear701"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="match_parent"
+                                    android:paddingTop="@dimen/_5pxh"
+                                    android:paddingEnd="@dimen/_5pxh"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:id="@+id/image201"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="@dimen/_2pxv"
+                                        android:layout_width="wrap_content"
+                                        android:scaleType="fitXY" android:src="@drawable/img_group_1717_3"/>
+                                    <LinearLayout
+                                        android:id="@+id/linear811"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_19pxh"
+                                        android:layout_weight="1.6"
+                                        android:layout_width="0dp" android:orientation="vertical">
+                                        <TextView
+                                            android:gravity="top|start"
+                                            android:id="@+id/txtFinish"
+                                            android:layout_gravity="start"
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="wrap_content"
+                                            android:text="@{detailHistoryScreenVM.detailHistoryScreenModel.txtFinish}"
+                                            style="@style/txtUbuntumedium16" tools:text="@string/msg_16_45_23_11_2"/>
+                                        <TextView
+                                            android:gravity="center"
+                                            android:id="@+id/txtTimeFinish"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/_3pxv"
+                                            android:layout_width="match_parent"
+                                            style="@style/txtNunitoregular14_1" android:text="@string/lbl_time_finish"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

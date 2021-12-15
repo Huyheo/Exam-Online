@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="detailScreen2VM" type="com.examonline.app.modules.detailscreen2.data.viewmodel.DetailScreen2VM"/>
+    </data>
+    <LinearLayout android:id="@+id/linear"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStyle">
+        <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" app:contentInsetStart="0dp">
+            <LinearLayout android:id="@+id/linear1"
+                android:layout_gravity="center"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <LinearLayout android:id="@+id/linear2"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_4pxv"
+                    android:layout_marginStart="@dimen/_24pxh"
+                    android:layout_marginTop="@dimen/_4pxv"
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp" android:orientation="horizontal">
+                    <ImageView android:id="@+id/image"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="@dimen/_24pxv"
+                        android:layout_width="@dimen/_24pxh"
+                        android:scaleType="fitXY" android:src="@drawable/img_43"/>
+                    <TextView android:gravity="top|start"
+                        android:id="@+id/txtDetailClass"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_2pxv"
+                        android:layout_marginTop="@dimen/_1pxv"
+                        android:layout_weight="1.5"
+                        android:layout_width="0dp"
+                        android:text="@{detailScreen2VM.detailScreen2Model.txtDetailClass}"
+                        style="@style/txtUbuntumedium18" tools:text="@string/lbl_detail_class"/>
+                </LinearLayout>
+<!--                <View-->
+<!--                    android:background="@drawable/rectangle_bg_gray_400_radius_16"-->
+<!--                    android:id="@+id/view"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_height="@dimen/_32pxv"-->
+<!--                    android:layout_marginEnd="@dimen/_20pxh"-->
+<!--                    android:layout_marginStart="@dimen/_146pxh" android:layout_width="@dimen/_32pxh"/>-->
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+        <FrameLayout android:id="@+id/frame"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+            <LinearLayout android:id="@+id/linear3"
+                android:layout_gravity="top|center"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" android:orientation="vertical">
+                <TextView android:gravity="top|start"
+                    android:id="@+id/txtClassName"
+                    android:layout_gravity="start"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_23pxh"
+                    android:layout_marginStart="@dimen/_23pxh"
+                    android:layout_width="wrap_content"
+                    android:text="@{detailScreen2VM.detailScreen2Model.txtClassName}"
+                    style="@style/txtUbuntumedium18" />
+<!--                    tools:text="@string/lbl_math_for_child"/>-->
+                <FrameLayout android:id="@+id/frame1"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_19pxv"
+                    android:layout_width="match_parent">
+                    <ImageView
+                        android:id="@+id/image4"
+                        imageRes="@{@drawable/img_group_1795}"
+                        android:layout_width="@dimen/_600pxh"
+                        android:layout_height="@dimen/_800pxh"
+                        android:layout_gravity="center_horizontal"
+                        tools:src="@drawable/img_group_1795" />
+                    <LinearLayout android:id="@+id/linear4"
+                        android:layout_gravity="top|center"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/_13pxh"
+                        android:layout_marginStart="@dimen/_13pxh"
+                        android:layout_marginTop="@dimen/_16pxv"
+                        android:layout_width="match_parent" android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16pxh">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        style="@style/txtPoppinssemibold18_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="top|start"
+                                        android:gravity="top|start"
+                                        android:text="@string/teacher" />
+                                    <TextView
+                                        android:id="@+id/txtTeacherName"
+                                        style="@style/txtPoppinssemibold18_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="top|start"
+                                        android:text="@{detailScreen2VM.detailScreen2Model.txtTeacherName}"/>
+<!--                                        tools:text="@string/NameTeacher" />-->
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        style="@style/txtPoppinssemibold18_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="top|start"
+                                        android:gravity="top|start"
+                                        android:text="@string/Number" />
+                                    <TextView
+                                        android:id="@+id/txtNumStudent"
+                                        style="@style/txtPoppinssemibold18_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="top|start"
+                                        android:text="@{detailScreen2VM.detailScreen2Model.txtNumStudent}"/>
+<!--                                        tools:text="@string/NumStudent" />-->
+                                </LinearLayout>
+                            </LinearLayout>
+<!--                            <TextView-->
+<!--                                android:id="@+id/txtTeacherName"-->
+<!--                                style="@style/txtPoppinssemibold18_1"-->
+<!--                                android:layout_width="160dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="top|start"-->
+<!--                                android:layout_marginStart="@dimen/_4pxh"-->
+<!--                                android:layout_marginTop="@dimen/_26pxh"-->
+<!--                                android:gravity="top|start"-->
+<!--                                android:text="@{detailScreen2VM.detailScreen2Model.txtTeacherName}"-->
+<!--                                tools:text="@string/msg_teacher_name" />-->
+
+                            <FrameLayout
+                                android:id="@+id/btnOut"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical">
+                                <ImageView android:id="@+id/image2"
+                                    android:layout_gravity="center"
+                                    android:layout_height="@dimen/_50pxh"
+                                    android:layout_width="@dimen/_50pxh"
+                                    android:background="@drawable/img_group_1796"/>
+
+                                <ImageView
+                                    android:id="@+id/image3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_30pxv"
+                                    android:layout_gravity="center"
+                                    app:tint="@color/white"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/img_logoutvariant" />
+                            </FrameLayout>
+
+                        </LinearLayout>
+
+                        <SearchView
+                            android:background="@drawable/rectangle_gradient_s_indigo_a700_e_indigo_a700_00_radius_20"
+                            android:hint="@string/lbl_search"
+                            android:id="@+id/etSearch"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_13pxv"
+                            android:layout_width="match_parent"
+                            android:paddingEnd="@dimen/_10pxh"
+                            android:paddingStart="@dimen/_10pxh"
+                            android:singleLine="true"
+                            />
+
+                        <!--                            <EditText-->
+                        <!--                                android:background="@drawable/rectangle_bg_white_a700_border_deep_purple_a700_radius_35"-->
+                        <!--                                android:hint="@string/lbl_search"-->
+                        <!--                                android:id="@+id/etSearch"-->
+                        <!--                                android:layout_gravity="center_horizontal"-->
+                        <!--                                android:layout_height="wrap_content"-->
+                        <!--                                android:layout_marginTop="@dimen/_13pxv"-->
+                        <!--                                android:layout_width="match_parent"-->
+                        <!--                                android:paddingBottom="@dimen/_10pxv"-->
+                        <!--                                android:paddingEnd="@dimen/_21pxh"-->
+                        <!--                                android:paddingStart="@dimen/_10pxh"-->
+                        <!--                                android:paddingTop="@dimen/_10pxv"-->
+                        <!--                                android:singleLine="true"-->
+                        <!--                                android:text="@={detailScreen2VM.detailScreen2Model.etSearchValue}"-->
+                        <!--                                android:textColorHint="@color/bluegray_100" style="@style/etSolidRoundedOutline"/>-->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerContent"
+                            android:layout_gravity="center"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/_16pxh"
+                            android:nestedScrollingEnabled="false"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            itemSpace="@{@dimen/_1pxh}" tools:itemCount="10" tools:listitem="@layout/row_detail_screen3"/>
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+</layout>

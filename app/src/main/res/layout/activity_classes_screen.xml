@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="classesScreenVM" type="com.examonline.app.modules.classesscreen.data.viewmodel.ClassesScreenVM"/>
+    </data>
+    <LinearLayout android:id="@+id/linear"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStyle">
+        <TextView android:gravity="top|start"
+            android:id="@+id/txtHelloTeacher"
+            android:layout_gravity="start"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_10pxv"
+            android:layout_width="wrap_content"
+            android:text="@{classesScreenVM.classesScreenModel.txtHelloTeacher}"
+            style="@style/txt" tools:text="@string/msg_hello_teacher"/>
+        <TextView android:gravity="top|start"
+            android:id="@+id/txtClasses" android:layout_gravity="start"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_width="wrap_content"
+            android:text="@{classesScreenVM.classesScreenModel.txtClasses}"
+            style="@style/txt_1" tools:text="@string/lbl_classes"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/image2"
+                imageRes="@{@drawable/img_group_1795}"
+                android:layout_width="@dimen/_600pxh"
+                android:layout_height="@dimen/_800pxh"
+                android:layout_gravity="center_horizontal"
+                tools:src="@drawable/img_group_1795" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_45pxv"
+                android:layout_marginStart="@dimen/_5pxh"
+                android:layout_marginEnd="@dimen/_5pxh"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="4"
+                style="@style/groupStylewhite_A700cornerRadius"
+                tools:listitem="@layout/row_classes_screen" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingBtn"
+                android:layout_gravity="end|bottom"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_32pxv"
+                android:layout_marginEnd="@dimen/_32pxh"
+                android:layout_width="wrap_content"
+                app:fabCustomSize="@dimen/_50pxh" app:srcCompat="@drawable/img_group_3"/>
+
+        </FrameLayout>
+    </LinearLayout>
+</layout>

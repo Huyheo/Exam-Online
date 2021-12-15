@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/img_home"
+            android:title="@string/lbl_home" />
+        <item
+            android:id="@+id/nav_classes"
+            android:icon="@drawable/img_bookvariant"
+            android:title="@string/lbl_classes" />
+        <item
+            android:id="@+id/nav_take_exam"
+            android:icon="@drawable/img_formatlistchecks"
+            android:title="@string/lbl_do_exam" />
+        <item
+            android:id="@+id/nav_history_exam"
+            android:icon="@drawable/img_history"
+            android:title="@string/msg_exam_taking_his" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/img_facemanprofile"
+            android:title="@string/lbl_profile" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/img_logout"
+            android:title="@string/lbl_log_out" />
+    </group>
+</menu>

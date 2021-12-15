@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="examScreenVM" type="com.examonline.app.modules.examscreen.data.viewmodel.ExamScreenVM"/>
+    </data>
+    <FrameLayout android:id="@+id/frame"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" style="@style/groupStyle">
+        <LinearLayout android:id="@+id/linear"
+            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent" android:orientation="vertical">
+            <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" app:contentInsetStart="0dp">
+                <LinearLayout android:id="@+id/linear1"
+                    android:layout_gravity="center"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent" android:orientation="horizontal">
+                    <LinearLayout android:id="@+id/linear2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_24pxh"
+                        android:layout_weight="0.8"
+                        android:layout_width="0dp" android:orientation="horizontal">
+                        <ImageView android:id="@+id/image"
+                            android:layout_gravity="center_vertical"
+                            android:layout_height="@dimen/_24pxv"
+                            android:layout_width="@dimen/_24pxh"
+                            android:scaleType="fitXY" android:src="@drawable/img_43"/>
+                        <TextView android:gravity="top|start"
+                            android:id="@+id/txtMathExam"
+                            android:layout_gravity="center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_2pxv"
+                            android:layout_marginTop="@dimen/_1pxv"
+                            android:layout_weight="1.5"
+                            android:layout_width="0dp"
+                            android:text="@{examScreenVM.examScreenModel.txtMathExam}"
+                            style="@style/txtUbuntumedium18" tools:text="@string/lbl_math_exam"/>
+                    </LinearLayout>
+                    <FrameLayout android:id="@+id/frame1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_20pxh"
+                        android:layout_marginStart="@dimen/_110pxh"
+                        android:layout_weight="0.4"
+                        android:layout_width="0dp" style="@style/groupStylewhite_A700cornerRadius">
+                        <LinearLayout android:gravity="center"
+                            android:id="@+id/linear3"
+                            android:layout_gravity="center"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent" android:orientation="horizontal">
+                            <ImageView android:id="@+id/image1"
+                                android:layout_gravity="center_vertical"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:src="@drawable/img_12"/>
+                            <TextView
+                                android:id="@+id/view_timer"
+                                tools:targetApi="24"
+                                android:layout_marginStart="@dimen/_5pxh"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:layout_gravity="center_vertical"/>
+                        </LinearLayout>
+                    </FrameLayout>
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/image2"
+                    imageRes="@{@drawable/img_group_1795}"
+                    android:layout_width="@dimen/_600pxh"
+                    android:layout_height="@dimen/_800pxh"
+                    android:layout_gravity="center_horizontal"
+                    tools:src="@drawable/img_group_1795" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_36pxh"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="26dp"
+                        android:text="2/10"
+                        android:textColor="@color/indigo_A700"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/next"
+                        style="@style/btnGradientRounded"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@string/next"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <Button
+                        android:id="@+id/back"
+                        style="@style/btnGradientRounded"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/back"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnSubmitExam"
+                        style="@style/btnGradientRounded"
+                        android:layout_width="@dimen/_100pxh"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_20pxv"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="@string/lbl_submit"
+                        android:textAllCaps="false"
+                        tools:text="@string/lbl_submit"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="MissingConstraints"
+                        android:focusable="true" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--                <LinearLayout-->
+<!--                    android:clipToPadding="false"-->
+<!--                    android:fillViewport="true"-->
+<!--                    android:id="@+id/scrollView"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginBottom="@dimen/_36pxv"-->
+<!--                    android:layout_weight="1" android:layout_width="match_parent">-->
+<!--                    <FrameLayout android:id="@+id/frame2"-->
+<!--                        android:layout_height="wrap_content" android:layout_width="match_parent">-->
+<!--                        <View-->
+<!--                            android:background="@drawable/rectangle_gradient_s_indigo_a700_e_cyan_a200_radius_10"-->
+<!--                            android:gravity="center" android:id="@+id/line"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_height="@dimen/_3pxv"-->
+<!--                            android:layout_marginBottom="@dimen/_668pxv"-->
+<!--                            android:layout_marginEnd="@dimen/_140pxh"-->
+<!--                            android:layout_marginStart="@dimen/_130pxh" android:layout_width="@dimen/_46pxh"/>-->
+<!--                        <LinearLayout android:id="@+id/linear4"-->
+<!--                            android:layout_gravity="top|start"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="@dimen/_21pxv"-->
+<!--                            android:layout_width="match_parent" android:orientation="vertical">-->
+<!--                            <FrameLayout android:id="@+id/frame3"-->
+<!--                                android:layout_gravity="center_horizontal"-->
+<!--                                android:layout_height="wrap_content" android:layout_width="match_parent">-->
+<!--                                <LinearLayout android:id="@+id/linear5"-->
+<!--                                    android:layout_gravity="center|start"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_width="match_parent" android:orientation="horizontal">-->
+<!--                                    <FrameLayout android:id="@+id/frame4"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_weight="1.5" android:layout_width="0dp">-->
+<!--                                        <LinearLayout-->
+<!--                                            android:gravity="center"-->
+<!--                                            android:id="@+id/linear6"-->
+<!--                                            android:layout_gravity="center|start"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_width="match_parent" android:orientation="horizontal">-->
+<!--                                            <FrameLayout-->
+<!--                                                android:id="@+id/frame5"-->
+<!--                                                android:layout_gravity="center_vertical"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_weight="1.3" android:layout_width="0dp">-->
+
+<!--                                                <androidx.recyclerview.widget.RecyclerView-->
+<!--                                                    android:id="@+id/recyclerView"-->
+<!--                                                    android:layout_gravity="center|start"-->
+<!--                                                    android:layout_height="wrap_content"-->
+<!--                                                    android:layout_width="match_parent"-->
+<!--                                                    android:nestedScrollingEnabled="false"-->
+<!--                                                    android:orientation="horizontal"-->
+<!--                                                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                                                    tools:itemCount="2" tools:listitem="@layout/row_exam_screen1"/>-->
+<!--                                                <LinearLayout-->
+<!--                                                    android:id="@+id/linear7"-->
+<!--                                                    android:layout_gravity="center|end"-->
+<!--                                                    android:layout_height="wrap_content"-->
+<!--                                                    android:layout_width="match_parent" android:orientation="vertical">-->
+<!--                                                    <FrameLayout-->
+<!--                                                        android:gravity="center"-->
+<!--                                                        android:id="@+id/frame6"-->
+<!--                                                        android:layout_gravity="center_horizontal"-->
+<!--                                                        android:layout_height="wrap_content"-->
+<!--                                                        android:layout_marginEnd="@dimen/_7pxh"-->
+<!--                                                        android:layout_marginStart="@dimen/_6pxh"-->
+<!--                                                        android:layout_width="match_parent" style="@style/groupStylebluegray_100cornerRadius">-->
+<!--                                                        <TextView-->
+<!--                                                            android:gravity="center"-->
+<!--                                                            android:id="@+id/txt6"-->
+<!--                                                            android:layout_gravity="center"-->
+<!--                                                            android:layout_height="match_parent"-->
+<!--                                                            android:layout_marginBottom="@dimen/_5pxv"-->
+<!--                                                            android:layout_marginEnd="@dimen/_9pxh"-->
+<!--                                                            android:layout_marginStart="@dimen/_10pxh"-->
+<!--                                                            android:layout_marginTop="@dimen/_7pxv"-->
+<!--                                                            android:layout_width="match_parent"-->
+<!--                                                            android:text="@{examScreenVM.examScreenModel.txt6}"-->
+<!--                                                            style="@style/txtUbuntumedium16_1" tools:text="@string/lbl_6"/>-->
+<!--                                                    </FrameLayout>-->
+<!--                                                    <View-->
+<!--                                                        android:background="@color/bluegray_100"-->
+<!--                                                        android:gravity="center"-->
+<!--                                                        android:id="@+id/line1"-->
+<!--                                                        android:layout_gravity="center"-->
+<!--                                                        android:layout_height="@dimen/_2pxv"-->
+<!--                                                        android:layout_marginTop="@dimen/_6pxv" android:layout_width="@dimen/_44pxh"/>-->
+<!--                                                </LinearLayout>-->
+<!--                                            </FrameLayout>-->
+<!--                                            <LinearLayout-->
+<!--                                                android:id="@+id/linear8"-->
+<!--                                                android:layout_gravity="center_vertical"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginEnd="@dimen/_40pxh"-->
+<!--                                                android:layout_weight="0.5"-->
+<!--                                                android:layout_width="0dp" android:orientation="vertical">-->
+<!--                                                <FrameLayout-->
+<!--                                                    android:gravity="center"-->
+<!--                                                    android:id="@+id/frame7"-->
+<!--                                                    android:layout_gravity="center_horizontal"-->
+<!--                                                    android:layout_height="wrap_content"-->
+<!--                                                    android:layout_width="match_parent" style="@style/groupStylebluegray_100cornerRadius">-->
+<!--                                                    <TextView-->
+<!--                                                        android:gravity="center"-->
+<!--                                                        android:id="@+id/txt7"-->
+<!--                                                        android:layout_gravity="center"-->
+<!--                                                        android:layout_height="match_parent"-->
+<!--                                                        android:layout_marginBottom="@dimen/_6pxv"-->
+<!--                                                        android:layout_marginEnd="@dimen/_10pxh"-->
+<!--                                                        android:layout_marginStart="@dimen/_10pxh"-->
+<!--                                                        android:layout_marginTop="@dimen/_6pxv"-->
+<!--                                                        android:layout_width="match_parent"-->
+<!--                                                        android:text="@{examScreenVM.examScreenModel.txt7}"-->
+<!--                                                        style="@style/txtUbuntumedium16_1" tools:text="@string/lbl_7"/>-->
+<!--                                                </FrameLayout>-->
+<!--                                                <View-->
+<!--                                                    android:background="@color/bluegray_100"-->
+<!--                                                    android:gravity="center"-->
+<!--                                                    android:id="@+id/line2"-->
+<!--                                                    android:layout_gravity="center"-->
+<!--                                                    android:layout_height="@dimen/_2pxv"-->
+<!--                                                    android:layout_marginTop="@dimen/_6pxv" android:layout_width="@dimen/_44pxh"/>-->
+<!--                                            </LinearLayout>-->
+<!--                                        </LinearLayout>-->
+<!--                                        <LinearLayout-->
+<!--                                            android:id="@+id/linear9"-->
+<!--                                            android:layout_gravity="center|end"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_width="match_parent" android:orientation="vertical">-->
+<!--                                            <FrameLayout-->
+<!--                                                android:gravity="center"-->
+<!--                                                android:id="@+id/frame8"-->
+<!--                                                android:layout_gravity="center_horizontal"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:layout_marginEnd="@dimen/_7pxh"-->
+<!--                                                android:layout_marginStart="@dimen/_6pxh"-->
+<!--                                                android:layout_width="match_parent" style="@style/groupStylebluegray_100cornerRadius">-->
+<!--                                                <TextView-->
+<!--                                                    android:gravity="center"-->
+<!--                                                    android:id="@+id/txt8"-->
+<!--                                                    android:layout_gravity="center"-->
+<!--                                                    android:layout_height="match_parent"-->
+<!--                                                    android:layout_marginBottom="@dimen/_6pxv"-->
+<!--                                                    android:layout_marginEnd="@dimen/_10pxh"-->
+<!--                                                    android:layout_marginStart="@dimen/_10pxh"-->
+<!--                                                    android:layout_marginTop="@dimen/_6pxv"-->
+<!--                                                    android:layout_width="match_parent"-->
+<!--                                                    android:text="@{examScreenVM.examScreenModel.txt8}"-->
+<!--                                                    style="@style/txtUbuntumedium16_1" tools:text="@string/lbl_8"/>-->
+<!--                                            </FrameLayout>-->
+<!--                                            <View-->
+<!--                                                android:background="@color/bluegray_100"-->
+<!--                                                android:gravity="center"-->
+<!--                                                android:id="@+id/line3"-->
+<!--                                                android:layout_gravity="center"-->
+<!--                                                android:layout_height="@dimen/_2pxv"-->
+<!--                                                android:layout_marginTop="@dimen/_6pxv" android:layout_width="@dimen/_44pxh"/>-->
+<!--                                        </LinearLayout>-->
+<!--                                    </FrameLayout>-->
+<!--                                    <LinearLayout android:id="@+id/linear10"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginEnd="@dimen/_41pxh"-->
+<!--                                        android:layout_weight="0.3"-->
+<!--                                        android:layout_width="0dp" android:orientation="vertical">-->
+<!--                                        <FrameLayout-->
+<!--                                            android:gravity="center"-->
+<!--                                            android:id="@+id/frame9"-->
+<!--                                            android:layout_gravity="center_horizontal"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_width="match_parent" style="@style/groupStylebluegray_100cornerRadius">-->
+<!--                                            <TextView-->
+<!--                                                android:gravity="center"-->
+<!--                                                android:id="@+id/txt9"-->
+<!--                                                android:layout_gravity="center"-->
+<!--                                                android:layout_height="match_parent"-->
+<!--                                                android:layout_marginBottom="@dimen/_5pxv"-->
+<!--                                                android:layout_marginEnd="@dimen/_10pxh"-->
+<!--                                                android:layout_marginStart="@dimen/_10pxh"-->
+<!--                                                android:layout_marginTop="@dimen/_7pxv"-->
+<!--                                                android:layout_width="match_parent"-->
+<!--                                                android:text="@{examScreenVM.examScreenModel.txt9}"-->
+<!--                                                style="@style/txtUbuntumedium16_1" tools:text="@string/lbl_9"/>-->
+<!--                                        </FrameLayout>-->
+<!--                                        <View-->
+<!--                                            android:background="@color/bluegray_100"-->
+<!--                                            android:gravity="center"-->
+<!--                                            android:id="@+id/line4"-->
+<!--                                            android:layout_gravity="center"-->
+<!--                                            android:layout_height="@dimen/_2pxv"-->
+<!--                                            android:layout_marginTop="@dimen/_6pxv" android:layout_width="@dimen/_44pxh"/>-->
+<!--                                    </LinearLayout>-->
+<!--                                </LinearLayout>-->
+<!--                                <LinearLayout android:id="@+id/linear11"-->
+<!--                                    android:layout_gravity="center|end"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginStart="@dimen/_254pxh"-->
+<!--                                    android:layout_width="match_parent" android:orientation="vertical">-->
+<!--                                    <FrameLayout android:gravity="center"-->
+<!--                                        android:id="@+id/frame10"-->
+<!--                                        android:layout_gravity="center_horizontal"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginEnd="@dimen/_7pxh"-->
+<!--                                        android:layout_marginStart="@dimen/_6pxh"-->
+<!--                                        android:layout_width="match_parent" style="@style/groupStylecornerRadius">-->
+<!--                                        <TextView android:gravity="center"-->
+<!--                                            android:id="@+id/txt10"-->
+<!--                                            android:layout_gravity="center|start"-->
+<!--                                            android:layout_height="match_parent"-->
+<!--                                            android:layout_marginBottom="@dimen/_6pxv"-->
+<!--                                            android:layout_marginEnd="@dimen/_6pxh"-->
+<!--                                            android:layout_marginStart="@dimen/_4pxh"-->
+<!--                                            android:layout_marginTop="@dimen/_6pxv"-->
+<!--                                            android:layout_width="match_parent"-->
+<!--                                            android:text="@{examScreenVM.examScreenModel.txt10}"-->
+<!--                                            style="@style/txtUbuntumedium16_1" tools:text="@string/lbl_10"/>-->
+<!--                                    </FrameLayout>-->
+<!--                                    <View android:gravity="center"-->
+<!--                                        android:id="@+id/line5"-->
+<!--                                        android:layout_gravity="center"-->
+<!--                                        android:layout_height="@dimen/_2pxv"-->
+<!--                                        android:layout_marginTop="@dimen/_6pxv" android:layout_width="@dimen/_44pxh"/>-->
+<!--                                </LinearLayout>-->
+<!--                            </FrameLayout>-->
+<!--                            <TextView android:gravity="top|start"-->
+<!--                                android:id="@+id/txt11"-->
+<!--                                android:layout_gravity="start"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/_18pxv"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:text="@{examScreenVM.examScreenModel.txt11}"-->
+<!--                                style="@style/txtUbuntumedium16" tools:text="@string/lbl_1_1"/>-->
+<!--                            <LinearLayout android:id="@+id/linear12"-->
+<!--                                android:layout_gravity="start"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/_20pxv"-->
+<!--                                android:layout_width="match_parent" android:orientation="vertical">-->
+<!--                                <LinearLayout android:gravity="center"-->
+<!--                                    android:id="@+id/linear13"-->
+<!--                                    android:layout_gravity="center_horizontal"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_width="match_parent" android:orientation="horizontal">-->
+<!--                                    <FrameLayout android:id="@+id/frame11"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_weight="1.5"-->
+<!--                                        android:layout_width="0dp" style="@style/groupStylebluegray_1">-->
+<!--                                        <TextView android:gravity="center"-->
+<!--                                            android:id="@+id/txtA"-->
+<!--                                            android:layout_gravity="center"-->
+<!--                                            android:layout_height="match_parent"-->
+<!--                                            android:layout_marginBottom="@dimen/_10pxv"-->
+<!--                                            android:layout_marginTop="@dimen/_9pxv"-->
+<!--                                            android:layout_width="match_parent"-->
+<!--                                            android:text="@{examScreenVM.examScreenModel.txtA}"-->
+<!--                                            style="@style/txtUbuntumedium18" tools:text="@string/lbl_a"/>-->
+<!--                                    </FrameLayout>-->
+<!--                                    <TextView android:gravity="top|start"-->
+<!--                                        android:id="@+id/txt2"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginBottom="@dimen/_18pxv"-->
+<!--                                        android:layout_marginStart="@dimen/_6pxh"-->
+<!--                                        android:layout_marginTop="@dimen/_9pxv"-->
+<!--                                        android:layout_weight="0.3"-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:text="@{examScreenVM.examScreenModel.txt2}"-->
+<!--                                        style="@style/txtUbunturegular14_1" tools:text="@string/lbl_2"/>-->
+<!--                                </LinearLayout>-->
+<!--                                <LinearLayout android:gravity="center"-->
+<!--                                    android:id="@+id/linear14"-->
+<!--                                    android:layout_gravity="center_horizontal"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginTop="@dimen/_2pxv"-->
+<!--                                    android:layout_width="match_parent" android:orientation="horizontal">-->
+<!--                                    <FrameLayout android:id="@+id/frame12"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_weight="1.5"-->
+<!--                                        android:layout_width="0dp" style="@style/groupStylebluegray_1">-->
+<!--                                        <TextView android:gravity="center"-->
+<!--                                            android:id="@+id/txtB"-->
+<!--                                            android:layout_gravity="center"-->
+<!--                                            android:layout_height="match_parent"-->
+<!--                                            android:layout_marginBottom="@dimen/_10pxv"-->
+<!--                                            android:layout_marginTop="@dimen/_8pxv"-->
+<!--                                            android:layout_width="match_parent"-->
+<!--                                            android:text="@{examScreenVM.examScreenModel.txtB}"-->
+<!--                                            style="@style/txtUbuntumedium18" tools:text="@string/lbl_b"/>-->
+<!--                                    </FrameLayout>-->
+<!--                                    <TextView android:gravity="top|start"-->
+<!--                                        android:id="@+id/txt3"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginBottom="@dimen/_18pxv"-->
+<!--                                        android:layout_marginStart="@dimen/_6pxh"-->
+<!--                                        android:layout_marginTop="@dimen/_9pxv"-->
+<!--                                        android:layout_weight="0.3"-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:text="@{examScreenVM.examScreenModel.txt3}"-->
+<!--                                        style="@style/txtUbunturegular14_1" tools:text="@string/lbl_3"/>-->
+<!--                                </LinearLayout>-->
+<!--                                <LinearLayout android:gravity="center"-->
+<!--                                    android:id="@+id/linear15"-->
+<!--                                    android:layout_gravity="center_horizontal"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginTop="@dimen/_2pxv"-->
+<!--                                    android:layout_width="match_parent" android:orientation="horizontal">-->
+<!--                                    <FrameLayout android:id="@+id/frame13"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_weight="1.5"-->
+<!--                                        android:layout_width="0dp" style="@style/groupStylebluegray_1">-->
+<!--                                        <TextView android:gravity="center"-->
+<!--                                            android:id="@+id/txtC"-->
+<!--                                            android:layout_gravity="center"-->
+<!--                                            android:layout_height="match_parent"-->
+<!--                                            android:layout_marginBottom="@dimen/_10pxv"-->
+<!--                                            android:layout_marginTop="@dimen/_9pxv"-->
+<!--                                            android:layout_width="match_parent"-->
+<!--                                            android:text="@{examScreenVM.examScreenModel.txtC}"-->
+<!--                                            style="@style/txtUbuntumedium18" tools:text="@string/lbl_c"/>-->
+<!--                                    </FrameLayout>-->
+<!--                                    <TextView android:gravity="top|start"-->
+<!--                                        android:id="@+id/txt4"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginBottom="@dimen/_18pxv"-->
+<!--                                        android:layout_marginStart="@dimen/_6pxh"-->
+<!--                                        android:layout_marginTop="@dimen/_9pxv"-->
+<!--                                        android:layout_weight="0.3"-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:text="@{examScreenVM.examScreenModel.txt4}"-->
+<!--                                        style="@style/txtUbunturegular14_1" tools:text="@string/lbl_4"/>-->
+<!--                                </LinearLayout>-->
+<!--                                <LinearLayout android:gravity="center"-->
+<!--                                    android:id="@+id/linear16"-->
+<!--                                    android:layout_gravity="center_horizontal"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginTop="@dimen/_2pxv"-->
+<!--                                    android:layout_width="match_parent" android:orientation="horizontal">-->
+<!--                                    <FrameLayout android:id="@+id/frame14"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_weight="1.5"-->
+<!--                                        android:layout_width="0dp" style="@style/groupStylecornerRadius_1">-->
+<!--                                        <TextView android:gravity="center"-->
+<!--                                            android:id="@+id/txtD"-->
+<!--                                            android:layout_gravity="center|end"-->
+<!--                                            android:layout_height="match_parent"-->
+<!--                                            android:layout_marginBottom="@dimen/_10pxv"-->
+<!--                                            android:layout_marginTop="@dimen/_9pxv"-->
+<!--                                            android:layout_width="match_parent"-->
+<!--                                            android:text="@{examScreenVM.examScreenModel.txtD}"-->
+<!--                                            style="@style/txtUbuntumedium18" tools:text="@string/lbl_d"/>-->
+<!--                                    </FrameLayout>-->
+<!--                                    <TextView android:gravity="top|start"-->
+<!--                                        android:id="@+id/txt5"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginBottom="@dimen/_18pxv"-->
+<!--                                        android:layout_marginStart="@dimen/_6pxh"-->
+<!--                                        android:layout_marginTop="@dimen/_9pxv"-->
+<!--                                        android:layout_weight="0.3"-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:text="@{examScreenVM.examScreenModel.txt5}"-->
+<!--                                        style="@style/txtUbunturegular14" tools:text="@string/lbl_5"/>-->
+<!--                                </LinearLayout>-->
+<!--                                <LinearLayout android:gravity="center"-->
+<!--                                    android:id="@+id/linear17"-->
+<!--                                    android:layout_gravity="center_horizontal"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginTop="@dimen/_2pxv"-->
+<!--                                    android:layout_width="match_parent" android:orientation="horizontal">-->
+<!--                                    <FrameLayout android:id="@+id/frame15"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_weight="1.5"-->
+<!--                                        android:layout_width="0dp" style="@style/groupStylebluegray_1">-->
+<!--                                        <TextView android:gravity="center"-->
+<!--                                            android:id="@+id/txtE"-->
+<!--                                            android:layout_gravity="center"-->
+<!--                                            android:layout_height="match_parent"-->
+<!--                                            android:layout_marginBottom="@dimen/_10pxv"-->
+<!--                                            android:layout_marginTop="@dimen/_9pxv"-->
+<!--                                            android:layout_width="match_parent"-->
+<!--                                            android:text="@{examScreenVM.examScreenModel.txtE}"-->
+<!--                                            style="@style/txtUbuntumedium18" tools:text="@string/lbl_e"/>-->
+<!--                                    </FrameLayout>-->
+<!--                                    <TextView android:gravity="top|start"-->
+<!--                                        android:id="@+id/txt12"-->
+<!--                                        android:layout_gravity="center_vertical"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginBottom="@dimen/_18pxv"-->
+<!--                                        android:layout_marginStart="@dimen/_6pxh"-->
+<!--                                        android:layout_marginTop="@dimen/_9pxv"-->
+<!--                                        android:layout_weight="0.3"-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:text="@{examScreenVM.examScreenModel.txt12}"-->
+<!--                                        style="@style/txtUbunturegular14_1" tools:text="@string/lbl_6"/>-->
+<!--                                </LinearLayout>-->
+<!--                            </LinearLayout>-->
+<!--                        </LinearLayout>-->
+<!--                        <LinearLayout android:id="@+id/linear18"-->
+<!--                            android:layout_gravity="bottom|center"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/_1pxh"-->
+<!--                            android:layout_width="match_parent" android:orientation="horizontal">-->
+<!--                            <ImageView android:id="@+id/image28"-->
+<!--                                android:layout_gravity="center_vertical"-->
+<!--                                android:layout_height="@dimen/_190pxv"-->
+<!--                                android:layout_width="@dimen/_50pxh"-->
+<!--                                imageRes="@{@drawable/img_previous}" tools:src="@drawable/img_previous"/>-->
+<!--                            <TextView android:gravity="top|start"-->
+<!--                                android:id="@+id/txtSubmitQuiz"-->
+<!--                                android:layout_gravity="bottom"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginStart="@dimen/_16pxh"-->
+<!--                                android:layout_marginTop="@dimen/_140pxv"-->
+<!--                                android:layout_weight="1.9"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:paddingBottom="@dimen/_16pxv"-->
+<!--                                android:paddingStart="@dimen/_30pxh"-->
+<!--                                android:paddingTop="@dimen/_16pxv"-->
+<!--                                android:text="@{examScreenVM.examScreenModel.txtSubmitQuiz}"-->
+<!--                                style="@style/txtSolidRoundedOutline" tools:text="@string/lbl_submit_quiz"/>-->
+<!--                            <ImageView android:id="@+id/image3"-->
+<!--                                android:layout_gravity="center_vertical"-->
+<!--                                android:layout_height="@dimen/_190pxv"-->
+<!--                                android:layout_marginStart="@dimen/_5pxh"-->
+<!--                                android:layout_width="@dimen/_50pxh"-->
+<!--                                android:scaleType="fitXY" android:src="@drawable/img_next"/>-->
+<!--                        </LinearLayout>-->
+<!--                    </FrameLayout>-->
+<!--                </LinearLayout>-->
+
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

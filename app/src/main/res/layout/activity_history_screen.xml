@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="historyScreenVM" type="com.examonline.app.modules.historyscreen.data.viewmodel.HistoryScreenVM"/>
+    </data>
+    <LinearLayout android:id="@+id/linear"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStyle">
+        <TextView android:gravity="top|start"
+            android:id="@+id/txtHelloTeacher"
+            android:layout_gravity="start"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_10pxv"
+            android:layout_width="wrap_content"
+            android:text="@{historyScreenVM.historyScreenModel.txtHelloTeacher}"
+            style="@style/txt" tools:text="@string/msg_hello_teacher"/>
+        <TextView android:gravity="top|start"
+            android:id="@+id/txtExamTakingHis"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_27pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_width="match_parent"
+            android:text="@{historyScreenVM.historyScreenModel.txtExamTakingHis}"
+            style="@style/txt_2" tools:text="@string/msg_exam_taking_his"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/image2"
+                imageRes="@{@drawable/img_group_1795}"
+                android:layout_width="@dimen/_600pxh"
+                android:layout_height="@dimen/_800pxh"
+                android:layout_gravity="center_horizontal"
+                tools:src="@drawable/img_group_1795" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_45pxv"
+                android:layout_marginStart="@dimen/_5pxh"
+                android:layout_marginEnd="@dimen/_5pxh"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                style="@style/groupStylewhite_A700cornerRadius"
+                tools:itemCount="3" tools:listitem="@layout/row_exam_screen1"/>
+
+        </FrameLayout>
+    </LinearLayout>
+</layout>

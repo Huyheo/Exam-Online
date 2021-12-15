@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="loginVM" type="com.examonline.app.modules.login.data.viewmodel.LoginVM"/>
+    </data>
+    <FrameLayout android:id="@+id/frame"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" style="@style/groupStylewhite_A700">
+        <ImageView android:id="@+id/image"
+            android:layout_width="705dp"
+            android:layout_height="1025dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            imageRes="@{@drawable/img_background_1}" tools:src="@drawable/img_background_1"/>
+
+        <FrameLayout
+            android:id="@+id/frame1"
+            android:layout_width="match_parent"
+            android:layout_height="391dp"
+            android:layout_gravity="bottom|center"
+            android:layout_marginStart="@dimen/_16pxh"
+            android:layout_marginTop="@dimen/_293pxv"
+            android:layout_marginEnd="@dimen/_13pxh"
+            android:layout_marginBottom="@dimen/_10pxv">
+
+            <LinearLayout
+                android:id="@+id/linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                tools:ignore="ExtraText">
+
+                <TextView
+                    android:id="@+id/txtLogin"
+                    style="@style/txtNunitobold36"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:gravity="top|start"
+                    android:text="@string/lbl_login" />
+
+                <TextView
+                    android:id="@+id/txtEmail"
+                    style="@style/txtNunitoregular14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/_3pxh"
+                    android:layout_marginTop="@dimen/_7pxv"
+                    android:layout_marginEnd="@dimen/_5pxh"
+                    android:gravity="top|start"
+                    android:text="@string/lbl_email" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/usernameLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_3pxh"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_marginEnd="@dimen/_3pxh"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/gray_500"
+                    app:startIconTint="@color/gray_500"
+                    app:startIconDrawable="@drawable/img_emailoutline"
+                    >
+                    <EditText
+                        android:id="@+id/etUsername"
+                        android:layout_width="@dimen/_283pxh"
+                        android:layout_height="@dimen/_31pxv"
+                        android:layout_gravity="start"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:paddingEnd="@dimen/_50pxh"
+                        android:paddingTop="@dimen/_10pxh"
+                        android:textColor="@color/blue_600"
+                        android:background="@drawable/rectangle_bg_blue_600_00_border_blue_600_00_radius_10"
+                        android:text="@={loginVM.loginModel.etUsername}"
+                        android:inputType="textEmailAddress"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:id="@+id/txtPassword"
+                    style="@style/txtNunitoregular14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/_3pxh"
+                    android:layout_marginTop="@dimen/_15pxv"
+                    android:layout_marginEnd="@dimen/_5pxh"
+                    android:gravity="top|start"
+                    android:text="@string/lbl_password" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwordLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_3pxh"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_marginEnd="@dimen/_3pxh"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:endIconTint="@color/gray_500"
+                    app:endIconMode="password_toggle"
+                    app:startIconDrawable="@drawable/img_lock"
+                    app:startIconTint="@color/gray_500"
+                    app:endIconDrawable="@drawable/show_password_selector"
+                    >
+
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="@dimen/_283pxh"
+                        android:layout_height="@dimen/_31pxv"
+                        android:layout_gravity="start"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:textColor="@color/blue_600"
+                        android:background="@drawable/rectangle_bg_blue_600_00_border_blue_600_00_radius_10"
+                        android:inputType="textPassword"
+                        android:paddingTop="@dimen/_10pxh"
+                        android:paddingEnd="@dimen/_50pxh"
+                        android:maxLength="20"
+                        android:text="@={loginVM.loginModel.etPassword}"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--                <View-->
+                <!--                    android:background="@drawable/rectangle_bg_blue_600_00_border_blue_600_00_radius_10"-->
+                <!--                    android:id="@+id/view1"-->
+                <!--                    android:layout_gravity="start"-->
+                <!--                    android:layout_height="@dimen/_31pxv"-->
+                <!--                    android:layout_marginEnd="@dimen/_3pxh"-->
+                <!--                    android:layout_marginStart="@dimen/_3pxh"-->
+                <!--                    android:layout_marginTop="@dimen/_1pxv" android:layout_width="@dimen/_283pxh"/>-->
+                <TextView
+                    android:id="@+id/txtForgotPassword"
+                    style="@style/txtNunitobold14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="@dimen/_2pxh"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_marginEnd="@dimen/_2pxh"
+                    android:gravity="top|start"
+                    android:text="@string/msg_forgot_password" />
+
+                <LinearLayout
+                    android:id="@+id/linear1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/_3pxh"
+                    android:layout_marginTop="@dimen/_50pxv"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtNewHereRegis"
+                        style="@style/txtNunitobold16"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="@dimen/_10pxv"
+                        android:layout_weight="1"
+                        android:gravity="top|start"
+                        android:text="@string/msg_new_here_regis" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnLogin"
+                        style="@style/btnSolidRoundedOutline"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_46pxh"
+                        android:layout_marginTop="@dimen/_20pxh"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:layout_marginBottom="@dimen/_15pxv"
+                        android:layout_weight="0.9"
+                        android:gravity="center"
+                        android:text="@string/lbl_login"
+                        android:textAllCaps="false"
+                        tools:text="@string/lbl_login"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|start"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_203pxv"
+                android:layout_marginEnd="@dimen/_170pxh"
+                android:layout_marginBottom="@dimen/_92pxv"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_auth" />
+        </FrameLayout>
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="64dp"
+            android:visibility="gone"
+            app:layout_constraintVertical_bias="0.3" />
+    </FrameLayout>
+</layout>

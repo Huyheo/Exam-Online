@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.examonline.app">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".appcomponents.di.MyApp"
+        android:allowBackup="false"
+        android:icon="@drawable/exam"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@drawable/exam"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApp"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.login.ui.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.startpage.ui.StartPageActivity"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".modules.forgotpasword.ui.ForgotPaswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.editname.ui.EditNameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.editaddress.ui.EditAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.otp.ui.OtpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.editphone.ui.EditPhoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.editemail.ui.EditEmailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.joinclass.ui.JoinClassActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.examscreen.ui.ExamScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.detailscreen.ui.DetailScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.otp1.ui.Otp1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.register.ui.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.editbirth.ui.EditBirthActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.editgender.ui.EditGenderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.editpassword.ui.EditPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.reset.ui.ResetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.detailhistoryscreen.ui.DetailHistoryScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modules.detailscreen2.ui.DetailScreen2Activity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>
