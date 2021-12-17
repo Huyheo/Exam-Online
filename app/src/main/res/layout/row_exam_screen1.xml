@@ -24,18 +24,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_3pxv"
                 android:layout_weight="1.3" android:layout_width="0dp" android:orientation="horizontal">
-<!--                <View-->
-<!--                    android:background="@drawable/rectangle_bg_gray_400_radius_3"-->
-<!--                    android:id="@+id/view"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_marginStart="@dimen/_20pxh"-->
-<!--                    android:layout_height="@dimen/_72pxv" android:layout_width="@dimen/_72pxh"/>-->
+                <View
+                    android:background="@drawable/test"
+                    android:id="@+id/Done"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_10pxh"
+                    android:layout_height="20dp"
+                    android:layout_width="20dp"
+                    android:visibility="visible"
+                    />
                 <LinearLayout android:id="@+id/linear3"
                     android:layout_gravity="center_vertical"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_2pxv"
                     android:layout_marginTop="@dimen/_2pxv"
-                    android:layout_marginStart="@dimen/_18pxh"
+                    android:layout_marginStart="@dimen/_10pxh"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:orientation="vertical">

@@ -6,8 +6,11 @@ import com.examonline.app.network.models.createsignup.CreateSignupRequest
 import com.examonline.app.network.models.createsignup.CreateSignupResponse
 import com.examonline.app.network.models.getallofexams.GetAllOfExamsResponse
 import com.examonline.app.network.models.getclasses.GetClassesResponse
+import com.examonline.app.network.models.getexam.GetExamResponse
 import com.examonline.app.network.models.getmemofclass.GetMemOfClassResponse
 import com.examonline.app.network.models.getprofile.GetProfileResponse
+import com.examonline.app.network.models.submitexam.SubmitExamRequest
+import com.examonline.app.network.models.submitexam.SubmitExamResponse
 import com.examonline.app.network.models.updatepassword.UpdatePasswordRequest
 import com.examonline.app.network.models.updatepassword.UpdatePasswordResponse
 import com.examonline.app.network.models.updateprofile.UpdateProfileRequest
@@ -44,6 +47,14 @@ interface RetrofitServices {
 
     @GET("/api/exams/student")
     public suspend fun getAllOfExams(@Header("Authorization") authorization: String?): GetAllOfExamsResponse
+
+    @GET("/api/exams/do-exam/{ExamID}")
+    public suspend fun getExam(@Header("Authorization") authorization: String?,
+                               @Path("ExamID") examID:String?): GetExamResponse
+
+    @POST("/api/exams/do-exam/submit")
+    public suspend fun submitExam(@Header("Authorization") authorization: String?,
+                                  @Body submitExamRequest: SubmitExamRequest?): SubmitExamResponse
 
 
 

@@ -7,12 +7,89 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/checkbox"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone"
+            android:orientation="vertical">
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkbox1"
+                android:background="@drawable/buttonbackground"
+                android:button="@null"
+                android:textAlignment="center"
+                android:padding="4dp"
+                android:text="RadioButton"
+                android:textColor="@color/indigo_A700"
+                android:layout_marginTop="8dp"/>
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkbox2"
+                android:background="@drawable/buttonbackground"
+                android:button="@null"
+                android:textAlignment="center"
+                android:padding="4dp"
+                android:text="RadioButton"
+                android:textColor="@color/indigo_A700"
+                android:layout_marginTop="8dp"/>
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkbox3"
+                android:background="@drawable/buttonbackground"
+                android:button="@null"
+                android:textAlignment="center"
+                android:text="RadioButton"
+                android:padding="4dp"
+                android:textColor="@color/indigo_A700"
+                android:layout_marginTop="8dp"/>
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkbox4"
+                android:background="@drawable/buttonbackground"
+                android:button="@null"
+                android:textAlignment="center"
+                android:text="RadioButton"
+                android:padding="4dp"
+                android:textColor="@color/indigo_A700"
+                android:layout_marginTop="8dp"/>
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkbox5"
+                android:background="@drawable/buttonbackground"
+                android:button="@null"
+                android:text="RadioButton"
+                android:textAlignment="center"
+                android:padding="4dp"
+                android:textColor="@color/indigo_A700"
+                android:layout_marginTop="8dp"/>
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkbox6"
+                android:background="@drawable/buttonbackground"
+                android:button="@null"
+                android:text="RadioButton"
+                android:textAlignment="center"
+                android:padding="4dp"
+                android:textColor="@color/indigo_A700"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -26,7 +103,8 @@
                 android:background="@drawable/buttonbackground"
                 android:button="@null"
                 android:padding="4dp"
-                android:text="RadioButton" />
+                android:text="RadioButton"
+                />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/radioButton2"
@@ -74,16 +152,17 @@
                 android:layout_marginTop="8dp"
                 android:padding="4dp"
                 android:text="RadioButton" />
-<!--            <RadioButton-->
-<!--                android:id="@+id/radioButton6"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:textColor="@color/indigo_A700"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:background="@null"-->
-<!--                android:button="@drawable/buttonbackground"-->
-<!--                android:padding="4dp"-->
-<!--                android:text="RadioButton" />-->
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioButton6"
+                android:layout_width="match_parent"
+                android:textColor="@color/indigo_A700"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:background="@drawable/buttonbackground"
+                android:button="@null"
+                android:layout_marginTop="8dp"
+                android:padding="4dp"
+                android:text="RadioButton" />
 <!--            <RadioButton-->
 <!--                android:id="@+id/radioButton7"-->
 <!--                android:layout_width="match_parent"-->

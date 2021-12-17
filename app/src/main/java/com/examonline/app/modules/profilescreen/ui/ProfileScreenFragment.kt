@@ -133,6 +133,10 @@ public class ProfileScreenFragment :
 
   @SuppressLint("SetTextI18n")
   public override fun onInitialized(): Unit {
+    binding.refreshLayout.setOnRefreshListener {
+      viewModel.onClickOnCreate()
+      binding.refreshLayout.isRefreshing=false
+    }
     binding.profileScreenVM=viewModel
     viewModel.profileModel.value?.txtHello="Hello, "+prefs.getUserName()
   }

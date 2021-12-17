@@ -4,6 +4,10 @@
     <data>
         <variable name="classesScreenVM" type="com.examonline.app.modules.classesscreen.data.viewmodel.ClassesScreenVM"/>
     </data>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout android:id="@+id/linear"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -62,4 +66,5 @@
 
         </FrameLayout>
     </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

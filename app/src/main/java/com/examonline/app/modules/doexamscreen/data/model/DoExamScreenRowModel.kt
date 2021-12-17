@@ -27,6 +27,9 @@ public data class DoExamScreenRowModel(
     public var txtSubject: String? =
         MyApp.getInstance().resources.getString(R.string.math),
     public var txtTimeEnd: String? = null,
+    public var txtExamID: String? = null,
+    public var DoingFlag: String? = null,
+    public var Expired: Boolean? = null,
     public var txtTime: String? = txtDateTime?.split(" ")?.toTypedArray()?.get(0),
     public var txtDate: String? = txtDateTime?.split(" ")?.toTypedArray()?.get(1)
 

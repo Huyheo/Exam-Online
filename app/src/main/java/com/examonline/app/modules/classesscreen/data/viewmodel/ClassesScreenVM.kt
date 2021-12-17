@@ -40,7 +40,7 @@ public class ClassesScreenVM : ViewModel(),KoinComponent {
   }
   public fun bindGetClassesResponse(responseData: GetClassesResponse) {
     val recyclerViewListValue = recyclerViewList.value
-//    val list: ArrayList<ClassesScreenRowModel> = ArrayList()
+    recyclerViewList.value?.let { recyclerViewList.value!!.removeAll(it) }
     for (r in responseData.data!!){
       val c = ClassesScreenRowModel(r.ClassName,r.TotalStudents,r.TeacherFullname,r.ClassID)
       recyclerViewListValue?.add(c)

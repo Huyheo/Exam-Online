@@ -121,6 +121,10 @@ public class ClassesScreenFragment :
 
   @SuppressLint("SetTextI18n")
   public override fun onInitialized(): Unit {
+      binding.refreshLayout.setOnRefreshListener {
+          viewModel.onCreateClasses()
+          binding.refreshLayout.isRefreshing=false
+      }
       binding.floatingBtn.visibility=View.GONE
       viewModel.classesScreenModel.value?.txtHelloTeacher="Hello, "+prefs.getUserName()
     val recyclerViewAdapter =

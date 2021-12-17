@@ -1,6 +1,5 @@
 package com.examonline.app.appcomponents.utility
 
-import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
@@ -71,6 +70,17 @@ public class PreferenceHelper {
             return getString("userid", null)
         }
     }
+    public fun setIsStudent(paramValue: Boolean?): Unit {
+        with(sharedPreference.edit()) {
+            this.putBoolean("isstudent", paramValue!!)
+            apply()
+        }
+    }
+    public fun getIsStudent(): Boolean? {
+        with(sharedPreference) {
+            return getBoolean("isstudent", false)
+        }
+    }
     public fun setIsLogin(paramValue: Boolean?): Unit {
         with(sharedPreference.edit()) {
             this.putBoolean("islogin", paramValue!!)
@@ -82,6 +92,17 @@ public class PreferenceHelper {
             return getBoolean("islogin", false)
         }
     }
+    public fun setTimeExpire(paramValue: Long): Unit {
+        with(sharedPreference.edit()) {
+            this.putLong("timeexpire", paramValue)
+            apply()
+        }
+    }
+    public fun getTimeExpire(): Long {
+        with(sharedPreference) {
+            return getLong("timeexpire", 0)
+        }
+    }
     public fun setLogout(): Unit {
         with(sharedPreference.edit()) {
             this.putBoolean("islogin", false)
@@ -90,6 +111,8 @@ public class PreferenceHelper {
             this.putString("avatar", "")
             this.putString("username", "")
             this.putString("token", "")
+            this.putLong("timeexpire", 0)
+            this.putBoolean("isstudent", false)
             apply()
         }
     }

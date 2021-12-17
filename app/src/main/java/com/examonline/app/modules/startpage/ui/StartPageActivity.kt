@@ -39,7 +39,7 @@ public class StartPageActivity :
   public override fun onInitialized(): Unit {
     binding.startPageVM = viewModel
     Handler().postDelayed({
-      if (prefs.getIsLogin() == true){
+      if (prefs.getIsLogin() == true && prefs.getTimeExpire()>System.currentTimeMillis()){
         val destIntent = Intent(this, MainActivity::class.java)
         destIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(destIntent)

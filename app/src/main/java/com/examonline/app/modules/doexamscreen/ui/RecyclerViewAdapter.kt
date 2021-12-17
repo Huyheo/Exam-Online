@@ -32,6 +32,11 @@ public class RecyclerViewAdapter(
 
   public override fun onBindViewHolder(holder: RowDoExamScreen1VH, position: Int): Unit {
      val doExamScreenRowModel = list[position]
+    if (list[position].DoingFlag == "NotDone" && list[position].Expired == true){
+      holder.binding.Done.visibility = View.GONE
+      holder.binding.Expired.visibility = View.VISIBLE
+    }
+    else if (list[position].DoingFlag == "NotDone") holder.binding.Done.visibility = View.INVISIBLE
     holder.binding.doExamScreenRowModel = doExamScreenRowModel
   }
 

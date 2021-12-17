@@ -4,6 +4,10 @@
     <data>
         <variable name="historyScreenVM" type="com.examonline.app.modules.historyscreen.data.viewmodel.HistoryScreenVM"/>
     </data>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout android:id="@+id/linear"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -52,4 +56,5 @@
 
         </FrameLayout>
     </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

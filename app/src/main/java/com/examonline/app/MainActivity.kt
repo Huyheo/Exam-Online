@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -16,17 +17,12 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
 import com.examonline.app.appcomponents.utility.PreferenceHelper
 import com.examonline.app.databinding.ActivityMainBinding
-import com.examonline.app.modules.editname.ui.EditNameActivity
 import com.examonline.app.modules.login.ui.LoginActivity
 import com.examonline.app.modules.profilescreen.ui.ProfileScreenFragment
-import com.github.tlaabs.timetableview.Schedule
-import com.github.tlaabs.timetableview.Time
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
-import okhttp3.*
 import org.koin.core.KoinComponent
 import org.koin.core.inject
-import java.io.IOException
 
 
 class MainActivity :  AppCompatActivity(),KoinComponent {
@@ -39,47 +35,66 @@ class MainActivity :  AppCompatActivity(),KoinComponent {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        setSupportActionBar(binding.appBarMain.findViewById(R.id.toolbar))
-
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navView
-        val navController=findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_classes, R.id.nav_take_exam,R.id.nav_history_exam,R.id.nav_profile,R.id.nav_logout
-            ), drawerLayout
-        )
-        navView.setupWithNavController(navController)
-        binding.appBarMain.findViewById<ImageView>(R.id.image).setOnClickListener {
-            drawerLayout.openDrawer(GravityCompat.START)
-        }
-
-        binding.navView.menu.findItem(R.id.nav_logout).setOnMenuItemClickListener {
-            prefs.setLogout()
-            val intent = Intent(this, LoginActivity::class.java)
+        if (prefs.getIsStudent()==false){
+            finish()
+            val intent:Intent = LoginActivity.getIntent(this,null)
             startActivity(intent)
-            this.finish()
-            true
+            Toast.makeText(this,"You are not student!",Toast.LENGTH_LONG).show()
         }
+        else {
+            binding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(binding.root)
+            setSupportActionBar(binding.appBarMain.findViewById(R.id.toolbar))
 
-        if (prefs.getAvatar()?.isNotEmpty() == true){
-            val imageView:ImageView= binding.navView.getHeaderView(0).findViewById(R.id.imageView) as ImageView
-            Picasso.get().load(prefs.getAvatar()).into(imageView);
-        }
-        binding.navView.getHeaderView(0).findViewById<TextView>(R.id.hellouser).text="Hello, "+prefs.getUserName()
-        binding.navView.getHeaderView(0).findViewById<TextView>(R.id.useremail).text=prefs.getEmail()
+            val drawerLayout: DrawerLayout = binding.drawerLayout
+            val navView: NavigationView = binding.navView
+            val navController = findNavController(R.id.nav_host_fragment_content_main)
+            appBarConfiguration = AppBarConfiguration(
+                setOf(
+                    R.id.nav_home,
+                    R.id.nav_classes,
+                    R.id.nav_take_exam,
+                    R.id.nav_history_exam,
+                    R.id.nav_profile,
+                    R.id.nav_logout
+                ), drawerLayout
+            )
+            navView.setupWithNavController(navController)
+            binding.appBarMain.findViewById<ImageView>(R.id.image).setOnClickListener {
+                drawerLayout.openDrawer(GravityCompat.START)
+            }
 
-        binding.navView.getHeaderView(0).setOnClickListener {
-            drawerLayout.closeDrawer(GravityCompat.START)
-            binding.navView.setCheckedItem(R.id.nav_profile)
-            val manager: FragmentManager = this.supportFragmentManager
-            val transaction = manager.beginTransaction()
-            transaction.replace(R.id.nav_host_fragment_content_main, ProfileScreenFragment::class.java, null)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            binding.navView.menu.findItem(R.id.nav_logout).setOnMenuItemClickListener {
+                prefs.setLogout()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                this.finish()
+                true
+            }
+
+            if (prefs.getAvatar()?.isNotEmpty() == true) {
+                val imageView: ImageView =
+                    binding.navView.getHeaderView(0).findViewById(R.id.imageView) as ImageView
+                Picasso.get().load(prefs.getAvatar()).into(imageView);
+            }
+            binding.navView.getHeaderView(0).findViewById<TextView>(R.id.hellouser).text =
+                "Hello, " + prefs.getUserName()
+            binding.navView.getHeaderView(0).findViewById<TextView>(R.id.useremail).text =
+                prefs.getEmail()
+
+            binding.navView.getHeaderView(0).setOnClickListener {
+                drawerLayout.closeDrawer(GravityCompat.START)
+                binding.navView.setCheckedItem(R.id.nav_profile)
+                val manager: FragmentManager = this.supportFragmentManager
+                val transaction = manager.beginTransaction()
+                transaction.replace(
+                    R.id.nav_host_fragment_content_main,
+                    ProfileScreenFragment::class.java,
+                    null
+                )
+                transaction.addToBackStack(null)
+                transaction.commit()
+            }
         }
     }
 

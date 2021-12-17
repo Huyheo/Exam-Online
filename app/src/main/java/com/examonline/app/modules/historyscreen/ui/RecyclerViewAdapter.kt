@@ -32,15 +32,11 @@ public class RecyclerViewAdapter(
   }
 
   public override fun onBindViewHolder(holder: RowHistoryScreen1VH, position: Int): Unit {
-    val historyScreenRowModel = HistoryScreenRowModel()
-    // TODO uncomment following line after integration with data source
-    // val doExamScreen1RowModel = list[position]
+     val historyScreenRowModel = list[position]
     holder.binding.historyScreenRowModel = historyScreenRowModel
   }
 
-  public override fun getItemCount(): Int = 3
-  // TODO uncomment following line after integration with data source
-  // list.size
+  public override fun getItemCount(): Int = list.size
 
   public interface OnItemClickListener {
     public fun onItemClick(
@@ -58,7 +54,7 @@ public class RecyclerViewAdapter(
     init {
       binding.cardView.setOnClickListener {
         // TODO replace with value from datasource
-        clickListener?.onItemClick(it, adapterPosition, HistoryScreenRowModel())
+        clickListener?.onItemClick(it, adapterPosition, list[adapterPosition])
       }
     }
   }

@@ -86,7 +86,7 @@
     <string name="lbl_22_11_2000">22/11/2000</string>
     <string name="lbl_home_screen">Home Screen</string>
     <string name="msg_16_30_23_11_2">16 : 30 23/11/2021</string>
-    <string name="msg_10_point_awarde">10 point awarded for a correct answer and no
+    <string name="msg_10_point_awarde">point awarded for a correct answer and no
     marks for a incorrect answer</string>
     <string name="lbl_exams">Exams</string>
     <string name="lbl_student_8">Student 8</string>
@@ -194,6 +194,8 @@
     <string name="lbl_unverified_email">Unauthenticated Account</string>
     <string name="msg_23_11_2">23/11/2021</string>
     <string name="msg_14_45">14:45</string>
+    <string name="mgm_you_are_not_student">You are not student!</string>
+    <string name="numPage">-/-</string>
 
 
 </resources>

@@ -92,10 +92,11 @@ dependencies {
     implementation "androidx.drawerlayout:drawerlayout:1.1.1"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
-    implementation 'com.github.tlaabs:TimetableView:1.0.3-fx1'
-//    implementation 'com.github.alamkanak:android-week-view:1.2.6'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.github.alamkanak:android-week-view:1.2.6'
     implementation 'me.jlurena:revolvingweekview:1.0.0'
-    implementation "com.android.support:appcompat-v7"
+//    implementation 'com.jonaswanke.calendar:calendar:0.1.1'
+
+//    implementation 'com.github.tobiasschuerg:android-week-view:-SNAPSHOT'
 }
 

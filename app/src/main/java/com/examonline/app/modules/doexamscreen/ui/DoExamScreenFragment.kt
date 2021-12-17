@@ -30,7 +30,6 @@ import kotlin.Unit
 public class DoExamScreenFragment :
     BaseFragment<ActivityDoExamScreenBinding>(R.layout.activity_do_exam_screen), KoinComponent {
   private val viewModel: DoExamScreenVM by viewModels<DoExamScreenVM>()
-  private var response:GetAllOfExamsResponse?=null
   private val prefs: PreferenceHelper by inject()
 
   override fun onStart() {
@@ -54,7 +53,8 @@ public class DoExamScreenFragment :
         destIntent.putExtra("Duration", item.txtDuration)
         destIntent.putExtra("TimeBegin", item.txtDateTime)
         destIntent.putExtra("TimeEnd", item.txtTimeEnd)
-        destIntent.putExtra("ClassName", item.txtSubject)
+        destIntent.putExtra("ExamID", item.txtExamID)
+        destIntent.putExtra("DoingFlag", item.DoingFlag)
         startActivity(destIntent)
       }
     }
@@ -63,6 +63,10 @@ public class DoExamScreenFragment :
 
   @SuppressLint("SetTextI18n")
   public override fun onInitialized(): Unit {
+    binding.refreshLayout.setOnRefreshListener {
+      viewModel.onCreateExams()
+      binding.refreshLayout.isRefreshing=false
+    }
     viewModel.doExamScreenModel.value?.txtHelloTeacher="Hello, "+prefs.getUserName()
     val recyclerViewAdapter =
       RecyclerViewAdapter(viewModel.recyclerViewList.value?:mutableListOf())
@@ -102,15 +106,15 @@ public class DoExamScreenFragment :
     }
     viewModel.getExamsLiveData.observe(this@DoExamScreenFragment) {
       if (it is SuccessResponse) {
-        response = it.getContentIfNotHandled()
-        onSuccessGetProfile(it)
+        val response = it.getContentIfNotHandled()
+        onSuccessGetExams(it)
       } else if (it is ErrorResponse) {
         onErrorGetExams(it.data ?: Exception())
       }
     }
   }
 
-  private fun onSuccessGetProfile(response: SuccessResponse<GetAllOfExamsResponse>) {
+  private fun onSuccessGetExams(response: SuccessResponse<GetAllOfExamsResponse>) {
     viewModel.bindGetExamsResponse(response.data)
   }
   private fun onErrorGetExams(exception: Exception): Unit {

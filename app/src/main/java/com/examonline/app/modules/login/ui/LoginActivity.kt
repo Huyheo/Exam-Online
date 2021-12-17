@@ -80,27 +80,35 @@ public class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activit
   }
   private fun onSuccessCreateLogin(response: SuccessResponse<CreateLoginResponse>): Unit {
     if (response.data.accessToken!=null){
-      if (response.data.data?.Authentication=="true"){
-        viewModel.bindCreateLoginResponse(response.data)
-        val destIntent = Intent(this, MainActivity::class.java)
-        destIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        startActivity(destIntent)
-        val welcome = getString(R.string.welcome)
-        val displayName = response.data.data.Username
-        Toast.makeText(
-          applicationContext,
-          "$welcome $displayName",
-          Toast.LENGTH_LONG
-        ).show()
-        finish()
-      }
-      else this@LoginActivity.alert(
-        MyApp.getInstance().getString(R.string.lbl_unverified_email),
-        MyApp.getInstance().getString(R.string.mgm_pls_verify_email)
+      if (response.data.data?.RoleID=="3") {
+        if (response.data.data.Authentication == "true") {
+          viewModel.bindCreateLoginResponse(response.data)
+          val destIntent = Intent(this, MainActivity::class.java)
+          destIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+          startActivity(destIntent)
+          val welcome = getString(R.string.welcome)
+          val displayName = response.data.data.Username
+          Toast.makeText(
+            applicationContext,
+            "$welcome $displayName",
+            Toast.LENGTH_LONG
+          ).show()
+          finish()
+        } else this@LoginActivity.alert(
+          MyApp.getInstance().getString(R.string.lbl_unverified_email),
+          MyApp.getInstance().getString(R.string.mgm_pls_verify_email)
         ) {
           neutralButton {
           }
         }
+      }
+      else this@LoginActivity.alert(
+        MyApp.getInstance().getString(R.string.lbl_login_error),
+        MyApp.getInstance().getString(R.string.mgm_you_are_not_student)
+      ) {
+        neutralButton {
+        }
+      }
     }
     else this@LoginActivity.alert(
       MyApp.getInstance().getString(R.string.lbl_login_error),

@@ -10,11 +10,14 @@ import com.examonline.app.network.models.createsignup.CreateSignupRequest
 import com.examonline.app.network.models.createsignup.CreateSignupResponse
 import com.examonline.app.network.models.getallofexams.GetAllOfExamsResponse
 import com.examonline.app.network.models.getclasses.GetClassesResponse
+import com.examonline.app.network.models.getexam.GetExamResponse
 import com.examonline.app.network.models.getmemofclass.GetMemOfClassResponse
 import com.examonline.app.network.models.getprofile.GetProfileResponse
 import com.examonline.app.network.models.resources.ErrorResponse
 import com.examonline.app.network.models.resources.Response
 import com.examonline.app.network.models.resources.SuccessResponse
+import com.examonline.app.network.models.submitexam.SubmitExamRequest
+import com.examonline.app.network.models.submitexam.SubmitExamResponse
 import com.examonline.app.network.models.updatepassword.UpdatePasswordRequest
 import com.examonline.app.network.models.updatepassword.UpdatePasswordResponse
 import com.examonline.app.network.models.updateprofile.UpdateProfileRequest
@@ -88,6 +91,38 @@ public class NetworkRepository : KoinComponent {
         ErrorResponse(e.message ?:errorMessage, e)
     }
 
+    public suspend fun getExam(authorization: String?, examID: String?):
+            Response<GetExamResponse> = try {
+        val isOnline = MyApp.getInstance().isOnline()
+        if(isOnline) {
+            SuccessResponse(retrofitServices.getExam(authorization, examID))
+        } else {
+            val internetException =
+                NoInternetConnection(MyApp.getInstance().getString(R.string.no_internet_connection))
+            ErrorResponse(internetException.message ?:errorMessage, internetException)
+        }
+    }
+    catch(e:Exception) {
+        e.printStackTrace()
+        ErrorResponse(e.message ?:errorMessage, e)
+    }
+
+    public suspend fun submitExam(authorization: String?, submitExamRequest: SubmitExamRequest?):
+            Response<SubmitExamResponse> = try {
+        val isOnline = MyApp.getInstance().isOnline()
+        if(isOnline) {
+            SuccessResponse(retrofitServices.submitExam(authorization, submitExamRequest))
+        } else {
+            val internetException =
+                NoInternetConnection(MyApp.getInstance().getString(R.string.no_internet_connection))
+            ErrorResponse(internetException.message ?:errorMessage, internetException)
+        }
+    }
+    catch(e:Exception) {
+        e.printStackTrace()
+        ErrorResponse(e.message ?:errorMessage, e)
+    }
+
     public suspend fun updateProfile(authorization: String?,updateProfileRequest: UpdateProfileRequest?):
             Response<UpdateProfileResponse> = try {
         val isOnline = MyApp.getInstance().isOnline()
@@ -120,36 +155,6 @@ public class NetworkRepository : KoinComponent {
         ErrorResponse(e.message ?:errorMessage, e)
     }
 
-//    public suspend fun putMemToClass(authorization: String?,classID: String?, memOfClass: MemToClassRequest?):
-//            Response<MemToClassResponse> = try {
-//        val isOnline = MyApp.getInstance().isOnline()
-//        if(isOnline) {
-//            SuccessResponse(retrofitServices.putMemToClass(authorization,classID,memOfClass))
-//        } else {
-//            val internetException =
-//                NoInternetConnection(MyApp.getInstance().getString(R.string.no_internet_connection))
-//            ErrorResponse(internetException.message ?:errorMessage, internetException)
-//        }
-//    }
-//    catch(e:Exception) {
-//        e.printStackTrace()
-//        ErrorResponse(e.message ?:errorMessage, e)
-//    }
-//    public suspend fun deleteMemToClass(authorization: String?,classID: String?, memOfClass: MemToClassRequest?):
-//            Response<MemToClassResponse> = try {
-//        val isOnline = MyApp.getInstance().isOnline()
-//        if(isOnline) {
-//            SuccessResponse(retrofitServices.deleteMemToClass(authorization,classID,memOfClass))
-//        } else {
-//            val internetException =
-//                NoInternetConnection(MyApp.getInstance().getString(R.string.no_internet_connection))
-//            ErrorResponse(internetException.message ?:errorMessage, internetException)
-//        }
-//    }
-//    catch(e:Exception) {
-//        e.printStackTrace()
-//        ErrorResponse(e.message ?:errorMessage, e)
-//    }
     public suspend fun createLogin(createLoginRequest: CreateLoginRequest?):
             Response<CreateLoginResponse> = try {
         val isOnline = MyApp.getInstance().isOnline()

@@ -21,7 +21,8 @@ data class Data(
     @field:SerializedName("TimeBegin") var TimeBegin: Date? = null,
     @field:SerializedName("TimeEnd") var TimeEnd: Date? = null,
     @field:SerializedName("Duration") var Duration: Int? = null,
-    @field:SerializedName("TotalQuestions") var TotalQuestions: Int? = null
+    @field:SerializedName("TotalQuestions") var TotalQuestions: Int? = null,
+    @field:SerializedName("DoingFlag") var DoingFlag: String? = null
 )
 
 data class Status(

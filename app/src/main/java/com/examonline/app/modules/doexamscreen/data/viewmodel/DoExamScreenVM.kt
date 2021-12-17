@@ -38,6 +38,7 @@ public class DoExamScreenVM : ViewModel(), KoinComponent {
     }
     public fun bindGetExamsResponse(responseData: GetAllOfExamsResponse) {
         val recyclerViewListValue = recyclerViewList.value
+        recyclerViewList.value?.let { recyclerViewList.value!!.removeAll(it) }
         for (r in responseData.data!!){
             val duration : String
             if (r.Duration!! > 60){
@@ -52,7 +53,10 @@ public class DoExamScreenVM : ViewModel(), KoinComponent {
                 duration,
                 r.TimeBegin?.let { convertTime(it) },
                 r.ClassName,
-                r.TimeEnd?. let { convertTime(it) }
+                r.TimeEnd?. let { convertTime(it) },
+                r.ExamID.toString(),
+                r.DoingFlag.toString(),
+                r.TimeEnd?.time!! < System.currentTimeMillis()
             )
             recyclerViewListValue?.add(c)
         }

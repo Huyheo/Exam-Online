@@ -31,22 +31,22 @@
                             android:layout_width="@dimen/_24pxh"
                             android:scaleType="fitXY" android:src="@drawable/img_43"/>
                         <TextView android:gravity="top|start"
-                            android:id="@+id/txtMathExam"
+                            android:id="@+id/txtExamName"
                             android:layout_gravity="center_vertical"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_2pxv"
                             android:layout_marginTop="@dimen/_1pxv"
                             android:layout_weight="1.5"
                             android:layout_width="0dp"
-                            android:text="@{examScreenVM.examScreenModel.txtMathExam}"
-                            style="@style/txtUbuntumedium18" tools:text="@string/lbl_math_exam"/>
+                            style="@style/txtUbuntumedium18"
+                            tools:ignore="NestedWeights" />
                     </LinearLayout>
                     <FrameLayout android:id="@+id/frame1"
                         android:layout_gravity="center_vertical"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_20pxh"
-                        android:layout_marginStart="@dimen/_110pxh"
-                        android:layout_weight="0.4"
+                        android:layout_marginStart="@dimen/_11pxh"
+                        android:layout_weight=".3"
                         android:layout_width="0dp" style="@style/groupStylewhite_A700cornerRadius">
                         <LinearLayout android:gravity="center"
                             android:id="@+id/linear3"
@@ -98,7 +98,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="26dp"
-                        android:text="2/10"
+                        android:text="@string/numPage"
                         android:textColor="@color/indigo_A700"
                         android:textSize="26sp"
                         android:textStyle="bold"
@@ -133,15 +133,16 @@
                         style="@style/btnGradientRounded"
                         android:layout_width="@dimen/_100pxh"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_20pxv"
+                        android:layout_marginEnd="@dimen/_5pxh"
+                        android:layout_marginTop="@dimen/_5pxh"
                         android:clickable="true"
+                        android:focusable="true"
                         android:gravity="center"
                         android:text="@string/lbl_submit"
                         android:textAllCaps="false"
-                        tools:text="@string/lbl_submit"
                         app:layout_constraintEnd_toEndOf="parent"
-                        tools:ignore="MissingConstraints"
-                        android:focusable="true" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 <!--                <LinearLayout-->

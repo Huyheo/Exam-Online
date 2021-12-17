@@ -1,8 +1,5 @@
 package com.examonline.app.modules.login.`data`.viewmodel
 
-import android.content.Context
-import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,6 +12,8 @@ import com.examonline.app.network.models.resources.Response
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 public class LoginVM : ViewModel(), KoinComponent{
   public val loginModel: MutableLiveData<LoginModel> = MutableLiveData(LoginModel())
@@ -44,6 +43,9 @@ public class LoginVM : ViewModel(), KoinComponent{
     prefs.setUserID(responseData.data?.UserID)
     prefs.setUserName(responseData.data?.Username)
     prefs.setIsLogin(true)
+    if (responseData.data?.RoleID=="3")
+      prefs.setIsStudent(true)
+    prefs.setTimeExpire(System.currentTimeMillis()+ TimeUnit.DAYS.toMillis(1))
     loginModel.value = loginModelValue
   }
 }

@@ -3,7 +3,10 @@ package com.examonline.app.modules.homescreen.ui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.RectF
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import com.examonline.app.R
@@ -18,47 +21,42 @@ import com.examonline.app.network.models.resources.ErrorResponse
 import com.examonline.app.network.models.resources.SuccessResponse
 import kotlin.String
 import kotlin.Unit
-
-import com.github.tlaabs.timetableview.Schedule
-import com.github.tlaabs.timetableview.Time
 import com.google.android.material.snackbar.Snackbar
+import me.jlurena.revolvingweekview.WeekView
+import me.jlurena.revolvingweekview.WeekViewEvent
 import org.json.JSONObject
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import retrofit2.HttpException
-import me.jlurena.revolvingweekview.WeekViewEvent
-
-import me.jlurena.revolvingweekview.WeekView.WeekViewLoader
+import java.util.*
+import kotlin.collections.ArrayList
+import androidx.annotation.ColorInt
+import com.examonline.app.modules.detailscreen.ui.DetailScreenActivity
+import org.threeten.bp.LocalTime
+import java.text.SimpleDateFormat
 
 
 public class HomeScreenFragment :
-    BaseFragment<ActivityHomeScreenBinding>(R.layout.activity_home_screen), KoinComponent {
+    BaseFragment<ActivityHomeScreenBinding>(R.layout.activity_home_screen), KoinComponent, WeekView.EventClickListener, WeekView.WeekViewLoader{
   private val viewModel: HomeScreenVM by viewModels<HomeScreenVM>()
   private var response: GetAllOfExamsResponse?=null
   private val prefs: PreferenceHelper by inject()
+  private val random = Random()
+  private val events: MutableList<WeekViewEvent> = ArrayList()
+
+  @ColorInt
+  private fun randomColor(): Int {
+    return Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256))
+  }
 
   override fun onStart() {
     super.onStart()
-    viewModel.onCreateExams()
+    if (events.isEmpty())
+      viewModel.onCreateExams()
   }
 
   public override fun setUpClicks(): Unit {
   }
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-  }
-
-//  override fun onCreateView(
-//    inflater: LayoutInflater,
-//    container: ViewGroup?,
-//    savedInstanceState: Bundle?
-//  ): View? {
-//    val activity: MainActivity? = activity as MainActivity?
-//    val schedules: ArrayList<Schedule> = activity!!.getSchedule()
-//    binding.timetable.add(schedules)
-//    return view
-//  }
 
   public override fun addObservers(): Unit {
     var progressDialog: AlertDialog? = null
@@ -82,38 +80,49 @@ public class HomeScreenFragment :
   }
 
   private fun onSuccessGetProfile(response: SuccessResponse<GetAllOfExamsResponse>) {
-    val schedules = ArrayList<Schedule>()
-    for (s in response.data.data!!){
-      val schedule = Schedule()
-      schedule.classTitle = s.ExamName // sets subject
+    if (events.isEmpty()) {
+      for (s in response.data.data!!) {
+        if(s.TimeEnd?.time!! > System.currentTimeMillis()
+//          && s.DoingFlag.equals("NotDone")
+        ) {
+          val duration = if (s.Duration!! > 60) {
+            s.Duration?.div(60).toString() + " Hour " +
+                    s.Duration?.rem(60).toString() + " Minute"
+          } else {
+            s.Duration.toString() + " Minute"
+          }
 
-      schedule.classPlace = s.ClassName // sets place
+          val info: MutableList<String> = ArrayList()
+          info.add(s.ExamID.toString())
+          info.add(s.TimeBegin!!.time.toString())
+          info.add(s.TimeEnd!!.time.toString())
+          info.add(duration)
+          info.add(s.TotalQuestions.toString() + " Questions")
+          info.add(s.DoingFlag.toString())
 
-      schedule.professorName = s.TotalQuestions.toString() // sets professor
-
-      schedule.startTime =
-        s.TimeBegin?.let { Time(it.hours, it.minutes) } // sets the beginning of class time (hour,minute)
-
-      schedule.endTime = s.TimeEnd?.let { Time(it.hours, it.minutes) } // sets the end of class time (hour,minute)
-      schedule.day = s.TimeBegin?.day!!
-      schedules.add(schedule)
+          if (s.TimeBegin!!.hours < s.TimeEnd!!.hours) {
+            val event = WeekViewEvent(
+              info.joinToString(","), s.ExamName,
+              s.TimeBegin!!.day, s.TimeBegin!!.hours, s.TimeBegin!!.minutes,
+              s.TimeBegin!!.day, s.TimeEnd!!.hours, s.TimeEnd!!.minutes
+            )
+            event.color = randomColor()
+            event.location = "- " + s.ClassName.toString()
+            events.add(event)
+          } else {
+            val event = WeekViewEvent(
+              info.joinToString(","), s.ExamName,
+              s.TimeBegin!!.day, s.TimeEnd!!.hours, s.TimeBegin!!.minutes,
+              s.TimeBegin!!.day, s.TimeBegin!!.hours, s.TimeEnd!!.minutes
+            )
+            event.color = randomColor()
+            event.location = "- " + s.ClassName.toString()
+            events.add(event)
+          }
+        }
+        binding.revolvingWeekview.notifyDatasetChanged()
+      }
     }
-//    binding.timetable.add(schedules)
-//    binding.timetable.setOnStickerSelectEventListener(OnStickerSelectedListener { idx, schedules ->
-//      Log.d("index", idx.toString())
-//      val destIntent = Intent(activity, DetailScreenActivity::class.java)
-//      destIntent.putExtra("ExamName", schedules[idx].classTitle)
-//      destIntent.putExtra("NumQuestion", schedules[idx].professorName)
-//      destIntent.putExtra("Duration", schedules[idx].day.toString())
-//      destIntent.putExtra("TimeBegin", schedules[idx].startTime.hour.toString())
-//      destIntent.putExtra("TimeEnd", schedules[idx].endTime.hour.toString())
-//      destIntent.putExtra("ClassName", schedules[idx].classPlace)
-//      startActivity(destIntent)
-//    })
-//    binding.revolvingWeekview.weekViewLoader = WeekViewLoader { // Add some events
-//      val events: List<WeekViewEvent> = ArrayList()
-//      return@WeekViewLoader events
-//    }
   }
   private fun onErrorGetExams(exception: Exception): Unit {
     when (exception) {
@@ -141,13 +150,17 @@ public class HomeScreenFragment :
     }
   }
 
-  @SuppressLint("SetTextI18n")
+  @SuppressLint("SetTextI18n", "ClickableViewAccessibility")
   public override fun onInitialized(): Unit {
+    binding.revolvingWeekview.weekViewLoader = WeekView.WeekViewLoader { // Add some events
+      events
+    }
+    binding.revolvingWeekview.setOnEventClickListener(this)
+
     binding.homeScreenVM = viewModel
     viewModel.homeScreenModel.value?.txtHelloTeacher = "Hello, "+prefs.getUserName()
 
-//    val mWeekView: WeekView = binding.weekView
-//    mWeekView.addChildrenForAccessibility()
+
   }
 
   public companion object {
@@ -158,5 +171,29 @@ public class HomeScreenFragment :
       destIntent.putExtra("bundle", bundle)
       return destIntent
     }
+  }
+
+  override fun onEventClick(event: WeekViewEvent?, eventRect: RectF?) {
+    Log.d("alllllll",event?.identifier.toString())
+    val info = event?.identifier.toString().split(",").toTypedArray()
+    val destIntent = Intent(activity, DetailScreenActivity::class.java)
+    destIntent.putExtra("ExamName", event?.name)
+    destIntent.putExtra("NumQuestion", info[4])
+    destIntent.putExtra("Duration", info[3])
+    destIntent.putExtra("TimeBegin", convertTime(info[1].toLong()))
+    destIntent.putExtra("TimeEnd", convertTime(info[2].toLong()))
+    destIntent.putExtra("ExamID", info[0])
+    destIntent.putExtra("DoingFlag", info[5])
+    startActivity(destIntent)
+  }
+
+  private fun convertTime (time: Long): String? {
+    val myFormat = "hh:mm dd/MM/yyyy"
+    val sdf = SimpleDateFormat(myFormat, Locale.getDefault())
+    return sdf.format(time)
+  }
+
+  override fun onWeekViewLoad(): MutableList<out WeekViewEvent> {
+    return events
   }
 }
