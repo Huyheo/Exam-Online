@@ -10,6 +10,7 @@ import com.examonline.app.appcomponents.base.BaseActivity
 import com.examonline.app.appcomponents.di.MyApp
 import com.examonline.app.databinding.ActivityForgotPaswordBinding
 import com.examonline.app.extensions.alert
+import com.examonline.app.extensions.isEmail
 import com.examonline.app.extensions.neutralButton
 import com.examonline.app.modules.forgotpasword.`data`.viewmodel.ForgotPaswordVM
 import com.examonline.app.modules.login.ui.LoginActivity
@@ -65,7 +66,7 @@ public class ForgotPaswordActivity :
     return if (emailInput.isEmpty()) {
       binding.editEmail.error = "Field can't be empty"
       false
-    } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+    } else if (!emailInput.isEmail()) {
       binding.editEmail.error = "Please enter a valid email address"
       false
     } else {

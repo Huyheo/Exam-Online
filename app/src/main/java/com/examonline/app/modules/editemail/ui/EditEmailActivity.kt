@@ -18,6 +18,7 @@ import com.examonline.app.appcomponents.utility.PreferenceHelper
 import com.examonline.app.databinding.ActivityEditEmailBinding
 import com.examonline.app.extensions.*
 import com.examonline.app.modules.editemail.`data`.viewmodel.EditEmailVM
+import com.examonline.app.modules.login.ui.LoginActivity
 import com.examonline.app.modules.otp1.ui.Otp1Activity
 import com.examonline.app.modules.profilescreen.ui.ProfileScreenFragment
 import com.examonline.app.network.models.resources.ErrorResponse
@@ -96,11 +97,18 @@ public class EditEmailActivity :
   private fun onSuccessCreateLogin(response: SuccessResponse<UpdateProfileResponse>): Unit {
     if (response.data.status?.Code=="200"){
       this@EditEmailActivity.hideKeyboard()
-      finish()
-      super.onBackPressed()
+      this@EditEmailActivity.alert(
+        MyApp.getInstance().getString(R.string.lbl_verify_email),
+        MyApp.getInstance().getString(R.string.msg_verification_email1)
+      ) {
+        neutralButton {
+          finish()
+          super.onBackPressed()
+        }
+      }
     }
     else this@EditEmailActivity.alert(
-      MyApp.getInstance().getString(R.string.lbl_login_error),
+      MyApp.getInstance().getString(R.string.lbl_error),
       response.data.message.toString()
     ) {
       neutralButton {
@@ -138,7 +146,7 @@ public class EditEmailActivity :
     return if (emailInput.isEmpty()) {
       binding.editEmail.error = "Field can't be empty"
       false
-    } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+    } else if (!emailInput.isEmail()) {
       binding.editEmail.error = "Please enter a valid email address"
       false
     } else {

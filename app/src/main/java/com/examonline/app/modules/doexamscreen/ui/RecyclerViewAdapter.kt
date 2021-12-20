@@ -36,7 +36,14 @@ public class RecyclerViewAdapter(
       holder.binding.Done.visibility = View.GONE
       holder.binding.Expired.visibility = View.VISIBLE
     }
-    else if (list[position].DoingFlag == "NotDone") holder.binding.Done.visibility = View.INVISIBLE
+    else if (list[position].DoingFlag == "NotDone") {
+      holder.binding.Done.visibility = View.GONE
+      holder.binding.Expired.visibility = View.INVISIBLE
+    }
+    else {
+      holder.binding.Done.visibility = View.VISIBLE
+      holder.binding.Expired.visibility = View.GONE
+    }
     holder.binding.doExamScreenRowModel = doExamScreenRowModel
   }
 

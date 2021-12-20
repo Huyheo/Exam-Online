@@ -9,6 +9,7 @@ import com.examonline.app.network.models.getclasses.GetClassesResponse
 import com.examonline.app.network.models.getexam.GetExamResponse
 import com.examonline.app.network.models.getmemofclass.GetMemOfClassResponse
 import com.examonline.app.network.models.getprofile.GetProfileResponse
+import com.examonline.app.network.models.getresultexams.GetResultExamsResponse
 import com.examonline.app.network.models.submitexam.SubmitExamRequest
 import com.examonline.app.network.models.submitexam.SubmitExamResponse
 import com.examonline.app.network.models.updatepassword.UpdatePasswordRequest
@@ -56,7 +57,10 @@ interface RetrofitServices {
     public suspend fun submitExam(@Header("Authorization") authorization: String?,
                                   @Body submitExamRequest: SubmitExamRequest?): SubmitExamResponse
 
+    @GET("/api/results/student")
+    public suspend fun getAllResultExam(@Header("Authorization") authorization: String?): GetResultExamsResponse
+
 
 
 }
-public const val BASE_URL: String = "https://onlxam-e.herokuapp.com"
+public const val BASE_URL: String = "https://onlxam.herokuapp.com"

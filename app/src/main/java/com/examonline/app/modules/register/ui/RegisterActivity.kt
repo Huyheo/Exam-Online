@@ -129,25 +129,13 @@ public class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.a
       return destIntent
     }
   }
-  private fun isValidPasswordFormat(password: String): Boolean {
-    val passwordREGEX = Pattern.compile("^" +
-//            "(?=.*[0-9])" +         //at least 1 digit
-//            "(?=.*[a-z])" +         //at least 1 lower case letter
-//            "(?=.*[A-Z])" +         //at least 1 upper case letter
-//            "(?=.*[a-zA-Z])" +      //any letter
-//            "(?=.*[@#$%^&+=])" +    //at least 1 special character
-            "(?=\\S+$)" +           //no white spaces
-            ".{6,}" +               //at least 6 characters
-            "$");
-    return passwordREGEX.matcher(password).matches()
-  }
 
   private fun validateEmail(): Boolean {
     val emailInput: String = binding.editEmailAddress.text.toString().trim()
     return if (emailInput.isEmpty()) {
       binding.editEmailAddress.error = "Field can't be empty"
       false
-    } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+    } else if (!emailInput.isEmail()) {
       binding.editEmailAddress.error = "Please enter a valid email address"
       false
     } else {
@@ -162,7 +150,7 @@ public class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.a
       binding.editPassword.error = "Field can't be empty"
       false
     }
-    else if (!isValidPasswordFormat(passwordInput)) {
+    else if (!passwordInput.isPassword()) {
       binding.editPassword.error = "Password at least 6 characters and no white spaces"
       false
     }
@@ -178,7 +166,7 @@ public class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.a
       binding.editConfirmPassword.error = "Field can't be empty"
       false
     }
-    else if (!isValidPasswordFormat(passwordInput)) {
+    else if (!passwordInput.isPassword()) {
       binding.editConfirmPassword.error = "Password at least 6 characters and no white spaces"
       false
     }

@@ -21,13 +21,13 @@
             android:layout_marginTop="@dimen/_12pxv"
             android:layout_width="match_parent"
             android:orientation="horizontal">
-<!--            <View-->
-<!--                android:background="@drawable/rectangle_bg_gray_400_radius_3"-->
-<!--                android:id="@+id/view"-->
-<!--                android:layout_marginStart="@dimen/_20pxh"-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                android:layout_height="@dimen/_72pxv"-->
-<!--                android:layout_width="@dimen/_72pxh"/>-->
+            <View
+                android:background="@drawable/rectangle_bg_gray_400_radius_3"
+                android:id="@+id/view"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_gravity="center_vertical"
+                android:layout_height="@dimen/_72pxv"
+                android:layout_width="@dimen/_72pxv"/>
             <LinearLayout android:id="@+id/linear1"
                 android:layout_gravity="center_vertical"
                 android:layout_height="wrap_content"

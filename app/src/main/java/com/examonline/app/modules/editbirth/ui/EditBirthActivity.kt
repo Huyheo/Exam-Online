@@ -148,7 +148,7 @@ public class EditBirthActivity :
       super.onBackPressed()
     }
     else this@EditBirthActivity.alert(
-      MyApp.getInstance().getString(R.string.lbl_login_error),
+      MyApp.getInstance().getString(R.string.lbl_error),
       response.data.message.toString()
     ) {
       neutralButton {

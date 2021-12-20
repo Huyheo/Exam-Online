@@ -101,7 +101,7 @@ public class EditPhoneActivity :
       super.onBackPressed()
     }
     else this@EditPhoneActivity.alert(
-      MyApp.getInstance().getString(R.string.lbl_login_error),
+      MyApp.getInstance().getString(R.string.lbl_error),
       response.data.message.toString()
     ) {
       neutralButton {

@@ -50,11 +50,13 @@ public class DoExamScreenFragment :
         val destIntent = Intent(activity, DetailScreenActivity::class.java)
         destIntent.putExtra("ExamName", item.txtNameOfExam)
         destIntent.putExtra("NumQuestion", item.txtNumQuestion)
-        destIntent.putExtra("Duration", item.txtDuration)
+        destIntent.putExtra("Duration", item.Duration)
         destIntent.putExtra("TimeBegin", item.txtDateTime)
         destIntent.putExtra("TimeEnd", item.txtTimeEnd)
         destIntent.putExtra("ExamID", item.txtExamID)
         destIntent.putExtra("DoingFlag", item.DoingFlag)
+        destIntent.putExtra("Expired", item.Expired)
+        destIntent.putExtra("txtDuration", item.txtDuration)
         startActivity(destIntent)
       }
     }

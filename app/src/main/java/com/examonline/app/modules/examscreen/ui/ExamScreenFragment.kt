@@ -1,5 +1,7 @@
 package com.examonline.app.modules.examscreen.ui
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -9,19 +11,25 @@ import com.examonline.app.appcomponents.base.BaseFragment
 import com.examonline.app.databinding.FullpagedQuestionBinding
 import com.examonline.app.network.models.getexam.Question
 
-public class ExamScreenFragment(question: Question) : BaseFragment<FullpagedQuestionBinding>(R.layout.fullpaged_question){
+public class ExamScreenFragment(private val question: Question) : BaseFragment<FullpagedQuestionBinding>(R.layout.fullpaged_question){
 
-    public val question: Question = question
-
+    @SuppressLint("SetTextI18n")
     override fun onInitialized() {
 
-        binding.questionDataPage.text = question.Question
+        binding.questionDataPage.text = question.Question.toString()
+        binding.type.text = "(" + question.Type.toString() + ")"
+        binding.level.text = question.Level.toString()
+        when {
+            question.Level!! == "EASY" -> binding.level.setTextColor(Color.GREEN)
+            question.Level!! == "MEDIUM" -> binding.level.setTextColor(Color.YELLOW)
+            question.Level!! == "HARD" -> binding.level.setTextColor(Color.RED)
+        }
 
-        val Type = question.Type.toString()
+        val type = question.Type.toString()
 
 
 
-        if (Type == "Single Choices" || Type == "True/False") {
+        if (type == "Single Choices" || type == "True/False") {
             val MCQ = binding.mcq.findViewById<View>(R.id.radioGroup) as RadioGroup
 
             binding.mcq.visibility = View.VISIBLE
@@ -46,11 +54,11 @@ public class ExamScreenFragment(question: Question) : BaseFragment<FullpagedQues
 
             MCQ.setOnCheckedChangeListener { _, i ->
                 for (element in question.Solution!!)
-                    element.Correct = null
+                    element.Correct = 0
                 question.Solution!![i.toString().toCharArray().reversedArray()[0].toString().toInt()-2].Correct = 1
             }
         }
-        else if(Type == "Multiple Choices" ){
+        else if(type == "Multiple Choices" ){
             val MCQ = binding.mcq.findViewById<View>(R.id.checkbox) as LinearLayout
             binding.mcq.visibility = View.VISIBLE
             binding.answerLayout.visibility = View.GONE
@@ -73,9 +81,11 @@ public class ExamScreenFragment(question: Question) : BaseFragment<FullpagedQues
                 ra[i].setOnClickListener {
                     for (element in question.Solution!!)
                         element.Correct = null
-                    for (i in question.Solution!!.indices)
-                        if (ra[i].isChecked)
-                            question.Solution!![i].Correct = 1
+                    for (j in question.Solution!!.indices)
+                        if (ra[j].isChecked)
+                            question.Solution!![j].Correct = 1
+                        else
+                            question.Solution!![j].Correct = 0
                 }
             }
         }
@@ -87,12 +97,31 @@ public class ExamScreenFragment(question: Question) : BaseFragment<FullpagedQues
                     question.Solution!![0].Correct = 1
                     question.Solution!![0].Solution = binding.etAnswer.text.toString()
                 }
+                else {
+                    question.Solution!![0].Correct = 0
+                    question.Solution!![0].Solution = binding.etAnswer.text.toString()
+                }
             }
         }
     }
 
     override fun setUpClicks() {
 
+    }
+
+    public fun checkAnswer() : Boolean{
+        var check = false
+        for (i in question.Solution!!){
+            if (i.Correct == 1){
+                check = true
+                break
+            }
+        }
+        return check
+    }
+
+    public fun getData() : Question {
+        return question
     }
 
     fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {

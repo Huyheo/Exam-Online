@@ -13,6 +13,7 @@ import com.examonline.app.appcomponents.di.MyApp
 import com.examonline.app.databinding.ActivityDetailScreenBinding
 import com.examonline.app.modules.detailscreen.`data`.viewmodel.DetailScreenVM
 import com.examonline.app.modules.examscreen.ui.ExamScreenActivity
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import kotlin.String
 import kotlin.Unit
 
@@ -27,10 +28,14 @@ public class DetailScreenActivity :
     }
     binding.btnStartExam.setOnClickListener {
       val destIntent = Intent(this,ExamScreenActivity::class.java)
-      destIntent.putExtra("NumQuestion", binding.txtNumQuestion.text.toString().split(" ").toTypedArray()[0])
+      destIntent.putExtra("NumQuestion", binding.txtNumQuestion.text.toString())
       destIntent.putExtra("ExamID", intent.getStringExtra("ExamID"))
+      destIntent.putExtra("Duration", intent.getStringExtra("Duration"))
+      destIntent.putExtra("TimeBegin", intent.getStringExtra("TimeBegin"))
+      destIntent.putExtra("TimeEnd", intent.getStringExtra("TimeEnd"))
       destIntent.putExtra("ExamName", intent.getStringExtra("ExamName"))
       startActivity(destIntent)
+      finish()
     }
   }
 
@@ -38,15 +43,22 @@ public class DetailScreenActivity :
     val numQuestion = intent.getStringExtra("NumQuestion").toString().split(" ").toTypedArray()[0]
     binding.detailScreenVM = viewModel
     viewModel.detailScreenModel.value?.txtNumQuestion = intent.getStringExtra("NumQuestion")
-    viewModel.detailScreenModel.value?.txtTotalDuration = intent.getStringExtra("Duration")
+    if (intent.getStringExtra("txtDuration")==null)
+      viewModel.detailScreenModel.value?.txtTotalDuration = intent.getStringExtra("Duration").toString()
+    else
+      viewModel.detailScreenModel.value?.txtTotalDuration = intent.getStringExtra("txtDuration").toString()
     viewModel.detailScreenModel.value?.txtStart = intent.getStringExtra("TimeBegin")
     viewModel.detailScreenModel.value?.txtClose = intent.getStringExtra("TimeEnd")
     viewModel.detailScreenModel.value?.txtMathExam = intent.getStringExtra("ExamName")
-    viewModel.detailScreenModel.value?.txt10PointAwarde = 10.div(numQuestion.toFloat()).toString() + " " + MyApp.getInstance().resources.getString(R.string.msg_10_point_awarde)
-    viewModel.detailScreenModel.value?.txt10PointForA = 10.div(numQuestion.toFloat()).toString() + " " + MyApp.getInstance().resources.getString(R.string.msg_10_point_for_a)
-    if (intent.getStringExtra("DoingFlag").equals("Done")) {
-      binding.btnStartExam.text = "Done!"
+    viewModel.detailScreenModel.value?.txt10PointAwarde = "%.1f".format(10.div(numQuestion.toFloat())) + " " + MyApp.getInstance().resources.getString(R.string.msg_10_point_awarde)
+    viewModel.detailScreenModel.value?.txt10PointForA = "%.1f".format(10.div(numQuestion.toFloat())) + " " + MyApp.getInstance().resources.getString(R.string.msg_10_point_for_a)
+    if (intent.getStringExtra("DoingFlag") =="Done") {
+      binding.btnStartExam.text = MyApp.getInstance().getString(R.string.lbl_done)
       binding.btnStartExam.setTextColor(Color.GREEN)
+      binding.btnStartExam.isClickable = false
+    } else if (intent.getBooleanExtra("Expired",false)){
+      binding.btnStartExam.text = MyApp.getInstance().getString(R.string.lbl_expired)
+      binding.btnStartExam.setTextColor(Color.RED)
       binding.btnStartExam.isClickable = false
     }
   }

@@ -70,7 +70,7 @@ public class EditPasswordActivity :
       super.onBackPressed()
     }
     else this@EditPasswordActivity.alert(
-      MyApp.getInstance().getString(R.string.lbl_login_error),
+      MyApp.getInstance().getString(R.string.lbl_error),
       response.data.message.toString()
     ) {
       neutralButton {
@@ -103,19 +103,6 @@ public class EditPasswordActivity :
     }
   }
 
-  private fun isValidPasswordFormat(password: String): Boolean {
-    val passwordREGEX = Pattern.compile("^" +
-//            "(?=.*[0-9])" +         //at least 1 digit
-//            "(?=.*[a-z])" +         //at least 1 lower case letter
-//            "(?=.*[A-Z])" +         //at least 1 upper case letter
-//            "(?=.*[a-zA-Z])" +      //any letter
-//            "(?=.*[@#$%^&+=])" +    //at least 1 special character
-            "(?=\\S+$)" +           //no white spaces
-            ".{6,}" +               //at least 6 characters
-            "$");
-    return passwordREGEX.matcher(password).matches()
-  }
-
   private fun validatePassword(): Boolean {
     val curPass: String = binding.editCurrentPass.text.toString().trim()
     val newPass: String = binding.editNewPass.text.toString().trim()
@@ -132,15 +119,15 @@ public class EditPasswordActivity :
       binding.editConfirmPass.error = "Field can't be empty"
       false
     }
-    else if (!isValidPasswordFormat(curPass)) {
+    else if (!curPass.isPassword()) {
       binding.editCurrentPass.error = "Password at least 6 characters and no white spaces"
       false
     }
-    else if (!isValidPasswordFormat(newPass)) {
+    else if (!newPass.isPassword()) {
       binding.editNewPass.error = "Password at least 6 characters and no white spaces"
       false
     }
-    else if (!isValidPasswordFormat(conPass)) {
+    else if (!conPass.isPassword()) {
       binding.editConfirmPass.error = "Password at least 6 characters and no white spaces"
       false
     }

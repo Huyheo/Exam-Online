@@ -1,5 +1,6 @@
 package com.examonline.app.network.models.submitexam
 
+import com.examonline.app.network.models.getexam.Question
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
@@ -10,17 +11,9 @@ data class SubmitExamRequest (
     @field:SerializedName("TimeEnd") var TimeEnd: Date? = null,
     @field:SerializedName("Duration") var Duration: Int? = null,
     @field:SerializedName("ClassID") var ClassID: Int? = null,
+    @field:SerializedName("DoingTime") var DoingTime: Int? = null,
     @field:SerializedName("ClassName") var ClassName: String? = null,
     @field:SerializedName("Questions") var Questions: List<Question>? = null
-)
-
-data class Question(
-    @field:SerializedName("QuestionID") var QuestionID: Int? = null,
-    @field:SerializedName("Question") var Question: String? = null,
-    @field:SerializedName("Type") var Type: String? = null,
-    @field:SerializedName("Level") var Level: String? = null,
-    @field:SerializedName("LibraryFolderID") var LibraryFolderID: Int? = null,
-    @field:SerializedName("Solution") var Solution: List<Solution>? = null
 )
 
 data class Solution(

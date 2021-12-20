@@ -10,6 +10,8 @@ import com.examonline.app.network.models.getexam.GetExamResponse
 import com.examonline.app.network.models.getexam.Question
 import com.examonline.app.network.models.repository.NetworkRepository
 import com.examonline.app.network.models.resources.Response
+import com.examonline.app.network.models.submitexam.SubmitExamRequest
+import com.examonline.app.network.models.submitexam.SubmitExamResponse
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -28,6 +30,8 @@ public class ExamScreenVM : ViewModel(), KoinComponent {
   public val progressLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
   public val getExamLiveData: MutableLiveData<Response<GetExamResponse>> =
     MutableLiveData<Response<GetExamResponse>>()
+  public val submitExamLiveData: MutableLiveData<Response<SubmitExamResponse>> =
+    MutableLiveData<Response<SubmitExamResponse>>()
   private val networkRepository: NetworkRepository by inject()
   private val prefs: PreferenceHelper by inject()
 
@@ -46,9 +50,14 @@ public class ExamScreenVM : ViewModel(), KoinComponent {
     QuestionList.value = responseData.data.Questions as MutableList<Question>?
   }
 
-  private fun convertTime (time: Date): String? {
-    val myFormat = "hh:mm dd/MM/yyyy"
-    val sdf = SimpleDateFormat(myFormat, Locale.getDefault())
-    return sdf.format(time.time)
+  public fun onSubmit(submitExamRequest: SubmitExamRequest): Unit {
+    viewModelScope.launch {
+      progressLiveData.postValue(true)
+      submitExamLiveData.postValue(networkRepository.submitExam(
+        authorization ="Bearer "+prefs.getToken(),
+        submitExamRequest = submitExamRequest
+      ))
+      progressLiveData.postValue(false)
+    }
   }
 }

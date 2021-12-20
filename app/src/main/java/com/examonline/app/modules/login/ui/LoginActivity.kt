@@ -152,26 +152,13 @@ public class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activit
     }
   }
 
-  private fun isValidPasswordFormat(password: String): Boolean {
-    val passwordREGEX = Pattern.compile("^" +
-//            "(?=.*[0-9])" +         //at least 1 digit
-//            "(?=.*[a-z])" +         //at least 1 lower case letter
-//            "(?=.*[A-Z])" +         //at least 1 upper case letter
-//            "(?=.*[a-zA-Z])" +      //any letter
-//            "(?=.*[@#$%^&+=])" +    //at least 1 special character
-            "(?=\\S+$)" +           //no white spaces
-            ".{6,}" +               //at least 6 characters
-            "$");
-    return passwordREGEX.matcher(password).matches()
-  }
-
   private fun validatePassword(): Boolean {
     val passwordInput: String = binding.etPassword.text.toString().trim()
     return if (passwordInput.isEmpty()) {
       binding.etPassword.error = "Field can't be empty"
       false
     }
-    else if (!isValidPasswordFormat(passwordInput)) {
+    else if (!passwordInput.isPassword()) {
       binding.etPassword.error = "Password at least 6 characters and no white spaces"
       false
     }

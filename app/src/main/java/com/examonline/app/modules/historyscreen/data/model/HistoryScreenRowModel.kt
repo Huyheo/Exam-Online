@@ -23,17 +23,16 @@ public data class HistoryScreenRowModel(
   public var txtDuration: String? =
       MyApp.getInstance().resources.getString(R.string.lbl_1_hour_15_min)
   ,
-  /**
-   * TODO Replace with dynamic value
-   */
-  public var txtDateTime: String? =
-      MyApp.getInstance().resources.getString(R.string.msg_14_45_23_11_2),
   public var txtSubject: String? =
       MyApp.getInstance().resources.getString(R.string.math),
-  public var txtTimeEnd: String? = null,
   public var txtExamID: String? = null,
-  public var DoingFlag: String? = null,
-  public var txtTime: String? = txtDateTime?.split(" ")?.toTypedArray()?.get(0),
-  public var txtDate: String? = txtDateTime?.split(" ")?.toTypedArray()?.get(1)
+  public var txtTimeBegin: String? = null,
+  public var txtTimeEnd: String? = null,
+  public var txtTimeSubmit: String? = null,
+  public var txtTimeStart: String? = null,
+  public var txtMark: String? = null,
+  public var txtDoingTime: String? = null,
+  public var txtTime: String? = txtTimeSubmit?.split(" ")?.toTypedArray()?.get(0),
+  public var txtDate: String? = txtTimeSubmit?.split(" ")?.toTypedArray()?.get(1)
 
 )

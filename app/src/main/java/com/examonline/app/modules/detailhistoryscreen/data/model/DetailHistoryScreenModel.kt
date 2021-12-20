@@ -37,12 +37,6 @@ public data class DetailHistoryScreenModel(
   /**
    * TODO Replace with dynamic value
    */
-  public var txt164523112: String? =
-      MyApp.getInstance().resources.getString(R.string.msg_16_45_23_11_2)
-  ,
-  /**
-   * TODO Replace with dynamic value
-   */
   public var txtResultOfExam: String? =
       MyApp.getInstance().resources.getString(R.string.lbl_result_of_exam)
   ,

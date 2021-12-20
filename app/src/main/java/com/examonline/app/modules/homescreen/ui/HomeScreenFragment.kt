@@ -32,8 +32,13 @@ import java.util.*
 import kotlin.collections.ArrayList
 import androidx.annotation.ColorInt
 import com.examonline.app.modules.detailscreen.ui.DetailScreenActivity
+import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalTime
 import java.text.SimpleDateFormat
+import android.util.TypedValue
+
+
+
 
 
 public class HomeScreenFragment :
@@ -72,18 +77,18 @@ public class HomeScreenFragment :
     viewModel.getExamsLiveData.observe(this@HomeScreenFragment) {
       if (it is SuccessResponse) {
         response = it.getContentIfNotHandled()
-        onSuccessGetProfile(it)
+        onSuccessGetExams(it)
       } else if (it is ErrorResponse) {
         onErrorGetExams(it.data ?: Exception())
       }
     }
   }
 
-  private fun onSuccessGetProfile(response: SuccessResponse<GetAllOfExamsResponse>) {
+  private fun onSuccessGetExams(response: SuccessResponse<GetAllOfExamsResponse>) {
     if (events.isEmpty()) {
       for (s in response.data.data!!) {
         if(s.TimeEnd?.time!! > System.currentTimeMillis()
-//          && s.DoingFlag.equals("NotDone")
+          && s.DoingFlag.equals("NotDone")
         ) {
           val duration = if (s.Duration!! > 60) {
             s.Duration?.div(60).toString() + " Hour " +
@@ -99,25 +104,95 @@ public class HomeScreenFragment :
           info.add(duration)
           info.add(s.TotalQuestions.toString() + " Questions")
           info.add(s.DoingFlag.toString())
+          info.add(s.Duration!!.toString())
 
-          if (s.TimeBegin!!.hours < s.TimeEnd!!.hours) {
+          var startDay : Int
+          val startHour : Int
+          val startMinute : Int
+          var endDay : Int
+          val endHour : Int
+          val endMinute : Int
+          if (s.TimeBegin?.time!! <= System.currentTimeMillis() &&
+            s.TimeEnd?.time!! > System.currentTimeMillis() + 7*24*60*60 &&
+            s.TimeBegin?.time!! <= System.currentTimeMillis() + 7*24*60*60) {
+            startDay = LocalDate.now().dayOfWeek.value
+            startHour = s.TimeBegin!!.hours - 7
+            startMinute = s.TimeBegin!!.minutes
+            endDay = 7
+            endHour = 23
+            endMinute = 59
+          }
+          else if (s.TimeBegin?.time!! > System.currentTimeMillis() &&
+            s.TimeEnd?.time!! > System.currentTimeMillis() + 7*24*60*60 &&
+            s.TimeBegin?.time!! <= System.currentTimeMillis() + 7*24*60*60) {
+            startDay = s.TimeBegin!!.day
+            startHour = s.TimeBegin!!.hours - 7
+            startMinute = s.TimeBegin!!.minutes
+            endDay = 7
+            endHour = 23
+            endMinute = 59
+          }
+          else {
+            startDay = s.TimeBegin!!.day
+            startHour = s.TimeBegin!!.hours - 7
+            startMinute = s.TimeBegin!!.minutes
+            endDay = s.TimeEnd!!.day
+            endHour = s.TimeEnd!!.hours -7
+            endMinute = s.TimeEnd!!.minutes
+          }
+
+          if (startDay>endDay) {
+            val c = randomColor()
             val event = WeekViewEvent(
               info.joinToString(","), s.ExamName,
-              s.TimeBegin!!.day, s.TimeBegin!!.hours, s.TimeBegin!!.minutes,
-              s.TimeBegin!!.day, s.TimeEnd!!.hours, s.TimeEnd!!.minutes
+              startDay, startHour, startMinute,
+              startDay, 23, 59
+            )
+            event.color = c
+            event.location = "- " + s.ClassName.toString()
+            events.add(event)
+            for (i in 1..7) {
+              startDay = (startDay+1).div(8)
+              val event = WeekViewEvent(
+                info.joinToString(","), s.ExamName,
+                startDay, startHour, startMinute,
+                startDay, endHour, endMinute
+              )
+              event.color = c
+              event.location = "- " + s.ClassName.toString()
+              events.add(event)
+            }
+          }
+          else if (startDay==endDay){
+            val event = WeekViewEvent(
+              info.joinToString(","), s.ExamName,
+              startDay, startHour, startMinute,
+              endDay, endHour, endMinute
             )
             event.color = randomColor()
             event.location = "- " + s.ClassName.toString()
             events.add(event)
-          } else {
+          }
+          else {
+            val c = randomColor()
             val event = WeekViewEvent(
               info.joinToString(","), s.ExamName,
-              s.TimeBegin!!.day, s.TimeEnd!!.hours, s.TimeBegin!!.minutes,
-              s.TimeBegin!!.day, s.TimeBegin!!.hours, s.TimeEnd!!.minutes
+              startDay, startHour, startMinute,
+              startDay, 23, 59
             )
-            event.color = randomColor()
+            event.color = c
             event.location = "- " + s.ClassName.toString()
             events.add(event)
+            for (i in (startDay+1)..endDay) {
+              val event = WeekViewEvent(
+                info.joinToString(","), s.ExamName,
+                i, 0, 0,
+                i, 23, 59
+              )
+              event.color = c
+              event.location = "- " + s.ClassName.toString()
+              events.add(event)
+            }
           }
         }
         binding.revolvingWeekview.notifyDatasetChanged()
@@ -159,8 +234,6 @@ public class HomeScreenFragment :
 
     binding.homeScreenVM = viewModel
     viewModel.homeScreenModel.value?.txtHelloTeacher = "Hello, "+prefs.getUserName()
-
-
   }
 
   public companion object {
@@ -179,17 +252,21 @@ public class HomeScreenFragment :
     val destIntent = Intent(activity, DetailScreenActivity::class.java)
     destIntent.putExtra("ExamName", event?.name)
     destIntent.putExtra("NumQuestion", info[4])
-    destIntent.putExtra("Duration", info[3])
+    destIntent.putExtra("txtDuration", info[3])
     destIntent.putExtra("TimeBegin", convertTime(info[1].toLong()))
     destIntent.putExtra("TimeEnd", convertTime(info[2].toLong()))
     destIntent.putExtra("ExamID", info[0])
     destIntent.putExtra("DoingFlag", info[5])
+    destIntent.putExtra("Duration", info[6])
+
     startActivity(destIntent)
   }
 
+  @SuppressLint("SimpleDateFormat")
   private fun convertTime (time: Long): String? {
-    val myFormat = "hh:mm dd/MM/yyyy"
-    val sdf = SimpleDateFormat(myFormat, Locale.getDefault())
+    val myFormat = "HH:mm dd/MM/yyyy"
+    val sdf = SimpleDateFormat(myFormat)
+    sdf.timeZone = TimeZone.getTimeZone("UTC")
     return sdf.format(time)
   }
 

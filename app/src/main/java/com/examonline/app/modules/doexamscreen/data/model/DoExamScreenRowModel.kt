@@ -30,6 +30,7 @@ public data class DoExamScreenRowModel(
     public var txtExamID: String? = null,
     public var DoingFlag: String? = null,
     public var Expired: Boolean? = null,
+    public var Duration: String? = null,
     public var txtTime: String? = txtDateTime?.split(" ")?.toTypedArray()?.get(0),
     public var txtDate: String? = txtDateTime?.split(" ")?.toTypedArray()?.get(1)
 

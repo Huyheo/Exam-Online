@@ -176,7 +176,7 @@
     <string name="math">Math</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
-    <string name="question">Question</string>
+    <string name="question">Question:</string>
     <string name="answer">Answer:</string>
     <string name="questiondatapage">QuestionDataPage</string>
     <string name="answer_data_page">AnswerDataPage</string>
@@ -196,6 +196,17 @@
     <string name="msg_14_45">14:45</string>
     <string name="mgm_you_are_not_student">You are not student!</string>
     <string name="numPage">-/-</string>
+    <string name="msg_check_answer">You must answer all the questions in order to submit the test</string>
+    <string name="lbl_unanswered">Unanswered Question</string>
+    <string name="lbl_exit">Leave</string>
+    <string name="msg_exit">Are you sure you want to leave the exam room?</string>
+    <string name="msg_submit">Are you sure you want to submit the test?</string>
+    <string name="lbl_done">Done!</string>
+    <string name="lbl_timeover">Time Over</string>
+    <string name="msg_timeover">Thank you for taking the test!</string>
+    <string name="lbl_expired">Expired!</string>
+    <string name="level">Level</string>
+    <string name="type">Type</string>
 
 
 </resources>

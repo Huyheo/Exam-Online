@@ -16,6 +16,7 @@ import com.examonline.app.modules.detailhistoryscreen.ui.DetailHistoryScreenActi
 import com.examonline.app.modules.historyscreen.data.model.HistoryScreenRowModel
 import com.examonline.app.modules.historyscreen.`data`.viewmodel.HistoryScreenVM
 import com.examonline.app.network.models.getallofexams.GetAllOfExamsResponse
+import com.examonline.app.network.models.getresultexams.GetResultExamsResponse
 import com.examonline.app.network.models.resources.ErrorResponse
 import com.examonline.app.network.models.resources.SuccessResponse
 import com.google.android.material.snackbar.Snackbar
@@ -50,9 +51,13 @@ public class HistoryScreenFragment :
           destIntent.putExtra("ExamName", item.txtNameOfExam)
           destIntent.putExtra("NumQuestion", item.txtNumQuestion)
           destIntent.putExtra("Duration", item.txtDuration)
-          destIntent.putExtra("TimeBegin", item.txtDateTime)
+          destIntent.putExtra("TimeBegin", item.txtTimeBegin)
           destIntent.putExtra("TimeEnd", item.txtTimeEnd)
           destIntent.putExtra("ExamID", item.txtExamID)
+          destIntent.putExtra("DoingTime", item.txtDoingTime)
+          destIntent.putExtra("Mark", item.txtMark)
+          destIntent.putExtra("TimeSubmit", item.txtTimeSubmit)
+          destIntent.putExtra("TimeStart", item.txtTimeStart)
         startActivity(destIntent)
       }
     }
@@ -109,7 +114,7 @@ public class HistoryScreenFragment :
         }
     }
 
-    private fun onSuccessGetProfile(response: SuccessResponse<GetAllOfExamsResponse>) {
+    private fun onSuccessGetProfile(response: SuccessResponse<GetResultExamsResponse>) {
         viewModel.bindGetExamsResponse(response.data)
     }
     private fun onErrorGetExams(exception: Exception): Unit {

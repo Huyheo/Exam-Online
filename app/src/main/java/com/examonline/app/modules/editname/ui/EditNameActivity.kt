@@ -110,7 +110,7 @@ public class EditNameActivity : BaseActivity<ActivityEditNameBinding>(R.layout.a
       super.onBackPressed()
     }
     else this@EditNameActivity.alert(
-      MyApp.getInstance().getString(R.string.lbl_login_error),
+      MyApp.getInstance().getString(R.string.lbl_error),
       response.data.message.toString()
     ) {
       neutralButton {

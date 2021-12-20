@@ -1,5 +1,6 @@
 package com.examonline.app.modules.doexamscreen.`data`.viewmodel
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -56,16 +57,19 @@ public class DoExamScreenVM : ViewModel(), KoinComponent {
                 r.TimeEnd?. let { convertTime(it) },
                 r.ExamID.toString(),
                 r.DoingFlag.toString(),
-                r.TimeEnd?.time!! < System.currentTimeMillis()
+                r.TimeEnd?.time!! < System.currentTimeMillis(),
+                r.Duration.toString()
             )
             recyclerViewListValue?.add(c)
         }
         recyclerViewList.value = recyclerViewListValue
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun convertTime (time: Date): String? {
-        val myFormat = "hh:mm dd/MM/yyyy"
-        val sdf = SimpleDateFormat(myFormat, Locale.getDefault())
+        val myFormat = "HH:mm dd/MM/yyyy"
+        val sdf = SimpleDateFormat(myFormat)
+        sdf.timeZone = TimeZone.getTimeZone("UTC")
         return sdf.format(time.time)
     }
 }

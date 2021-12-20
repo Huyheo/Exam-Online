@@ -1,8 +1,7 @@
 package com.examonline.app.appcomponents.network
 
 import com.examonline.app.BuildConfig
-import com.examonline.app.network.BASE_URL
-import com.examonline.app.network.RetrofitServices
+import com.examonline.app.network.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
