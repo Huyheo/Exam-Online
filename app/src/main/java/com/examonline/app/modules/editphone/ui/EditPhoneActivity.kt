@@ -88,13 +88,13 @@ public class EditPhoneActivity :
     viewModel.editPhoneLiveData.observe(this@EditPhoneActivity) {
       if (it is SuccessResponse) {
         val response = it.getContentIfNotHandled()
-        onSuccessCreateLogin(it)
+        onSuccessEditPhone(it)
       } else if (it is ErrorResponse) {
-        onErrorCreateLogin(it.data ?: Exception())
+        onErrorEditPhone(it.data ?: Exception())
       }
     }
   }
-  private fun onSuccessCreateLogin(response: SuccessResponse<UpdateProfileResponse>): Unit {
+  private fun onSuccessEditPhone(response: SuccessResponse<UpdateProfileResponse>): Unit {
     if (response.data.status?.Code=="200"){
       this@EditPhoneActivity.hideKeyboard()
       finish()
@@ -108,7 +108,7 @@ public class EditPhoneActivity :
       }
     }
   }
-  private fun onErrorCreateLogin(exception: Exception): Unit {
+  private fun onErrorEditPhone(exception: Exception): Unit {
     when (exception) {
       is NoInternetConnection -> {
         Snackbar.make(binding.root, exception.message ?: "", Snackbar.LENGTH_LONG).show()

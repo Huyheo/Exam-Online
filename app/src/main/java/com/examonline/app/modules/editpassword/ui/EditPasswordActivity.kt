@@ -58,13 +58,13 @@ public class EditPasswordActivity :
     viewModel.editPasswordLiveData.observe(this@EditPasswordActivity) {
       if (it is SuccessResponse) {
         val response = it.getContentIfNotHandled()
-        onSuccessCreateLogin(it)
+        onSuccessEditPassword(it)
       } else if (it is ErrorResponse) {
-        onErrorCreateLogin(it.data ?: Exception())
+        onErrorEditPassword(it.data ?: Exception())
       }
     }
   }
-  private fun onSuccessCreateLogin(response: SuccessResponse<UpdatePasswordResponse>): Unit {
+  private fun onSuccessEditPassword(response: SuccessResponse<UpdatePasswordResponse>): Unit {
     if (response.data.status?.Code=="200"){
       this@EditPasswordActivity.hideKeyboard()
       super.onBackPressed()
@@ -77,7 +77,7 @@ public class EditPasswordActivity :
       }
     }
   }
-  private fun onErrorCreateLogin(exception: Exception): Unit {
+  private fun onErrorEditPassword(exception: Exception): Unit {
     when (exception) {
       is NoInternetConnection -> {
         Snackbar.make(binding.root, exception.message ?: "", Snackbar.LENGTH_LONG).show()

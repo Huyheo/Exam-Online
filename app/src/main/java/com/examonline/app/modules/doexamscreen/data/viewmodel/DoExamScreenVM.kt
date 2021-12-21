@@ -58,7 +58,8 @@ public class DoExamScreenVM : ViewModel(), KoinComponent {
                 r.ExamID.toString(),
                 r.DoingFlag.toString(),
                 r.TimeEnd?.time!! < System.currentTimeMillis(),
-                r.Duration.toString()
+                r.Duration.toString(),
+                r.TimeBegin?.time!! > System.currentTimeMillis()
             )
             recyclerViewListValue?.add(c)
         }

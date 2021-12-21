@@ -37,10 +37,6 @@ import org.threeten.bp.LocalTime
 import java.text.SimpleDateFormat
 import android.util.TypedValue
 
-
-
-
-
 public class HomeScreenFragment :
     BaseFragment<ActivityHomeScreenBinding>(R.layout.activity_home_screen), KoinComponent, WeekView.EventClickListener, WeekView.WeekViewLoader{
   private val viewModel: HomeScreenVM by viewModels<HomeScreenVM>()
@@ -56,24 +52,23 @@ public class HomeScreenFragment :
 
   override fun onStart() {
     super.onStart()
-    if (events.isEmpty())
-      viewModel.onCreateExams()
+    viewModel.onCreateExams()
   }
 
   public override fun setUpClicks(): Unit {
   }
 
   public override fun addObservers(): Unit {
-    var progressDialog: AlertDialog? = null
-    viewModel.progressLiveData.observe(this@HomeScreenFragment) {
-      if (it) {
-        progressDialog?.dismiss()
-        progressDialog = null
-        progressDialog = this@HomeScreenFragment.activity?.showProgressDialog()
-      } else {
-        progressDialog?.dismiss()
-      }
-    }
+//    var progressDialog: AlertDialog? = null
+//    viewModel.progressLiveData.observe(this@HomeScreenFragment) {
+//      if (it) {
+//        progressDialog?.dismiss()
+//        progressDialog = null
+//        progressDialog = this@HomeScreenFragment.activity?.showProgressDialog()
+//      } else {
+//        progressDialog?.dismiss()
+//      }
+//    }
     viewModel.getExamsLiveData.observe(this@HomeScreenFragment) {
       if (it is SuccessResponse) {
         response = it.getContentIfNotHandled()
@@ -105,6 +100,7 @@ public class HomeScreenFragment :
           info.add(s.TotalQuestions.toString() + " Questions")
           info.add(s.DoingFlag.toString())
           info.add(s.Duration!!.toString())
+          info.add((s.TimeBegin!!.time > System.currentTimeMillis()).toString())
 
           var startDay : Int
           val startHour : Int
@@ -116,9 +112,9 @@ public class HomeScreenFragment :
             s.TimeEnd?.time!! > System.currentTimeMillis() + 7*24*60*60 &&
             s.TimeBegin?.time!! <= System.currentTimeMillis() + 7*24*60*60) {
             startDay = LocalDate.now().dayOfWeek.value
-            startHour = s.TimeBegin!!.hours - 7
-            startMinute = s.TimeBegin!!.minutes
-            endDay = 7
+            startHour = LocalTime.now().hour
+            startMinute = LocalTime.now().minute
+            endDay = startDay - 1
             endHour = 23
             endMinute = 59
           }
@@ -128,7 +124,7 @@ public class HomeScreenFragment :
             startDay = s.TimeBegin!!.day
             startHour = s.TimeBegin!!.hours - 7
             startMinute = s.TimeBegin!!.minutes
-            endDay = 7
+            endDay = LocalDate.now().dayOfWeek.value - 1
             endHour = 23
             endMinute = 59
           }
@@ -140,59 +136,84 @@ public class HomeScreenFragment :
             endHour = s.TimeEnd!!.hours -7
             endMinute = s.TimeEnd!!.minutes
           }
-
-          if (startDay>endDay) {
-            val c = randomColor()
-            val event = WeekViewEvent(
-              info.joinToString(","), s.ExamName,
-              startDay, startHour, startMinute,
-              startDay, 23, 59
-            )
-            event.color = c
-            event.location = "- " + s.ClassName.toString()
-            events.add(event)
-            for (i in 1..7) {
-              startDay = (startDay+1).div(8)
-              val event = WeekViewEvent(
-                info.joinToString(","), s.ExamName,
-                startDay, startHour, startMinute,
-                startDay, endHour, endMinute
-              )
-              event.color = c
-              event.location = "- " + s.ClassName.toString()
-              events.add(event)
-            }
-          }
-          else if (startDay==endDay){
-            val event = WeekViewEvent(
-              info.joinToString(","), s.ExamName,
-              startDay, startHour, startMinute,
-              endDay, endHour, endMinute
-            )
-            event.color = randomColor()
-            event.location = "- " + s.ClassName.toString()
-            events.add(event)
-          }
-          else {
-            val c = randomColor()
-            val event = WeekViewEvent(
-              info.joinToString(","), s.ExamName,
-              startDay, startHour, startMinute,
-              startDay, 23, 59
-            )
-            event.color = c
-            event.location = "- " + s.ClassName.toString()
-            events.add(event)
-            for (i in (startDay+1)..endDay) {
-              val event = WeekViewEvent(
-                info.joinToString(","), s.ExamName,
-                i, 0, 0,
-                i, 23, 59
-              )
-              event.color = c
-              event.location = "- " + s.ClassName.toString()
-              events.add(event)
-            }
+          when {
+              startDay>endDay -> {
+                  var day = startDay
+                  val c = randomColor()
+                  for (i in 1..(8-startDay+endDay)) {
+                    val event : WeekViewEvent
+                    when (day) {
+                      startDay -> {
+                        event = WeekViewEvent(
+                          info.joinToString(","), s.ExamName,
+                          day, startHour, startMinute,
+                          day, 23, 59
+                        )
+                      }
+                      endDay -> {
+                        event = WeekViewEvent(
+                          info.joinToString(","), s.ExamName,
+                          day, 0, 0,
+                          day, endHour, endMinute
+                        )
+                      }
+                      else -> {
+                        event = WeekViewEvent(
+                          info.joinToString(","), s.ExamName,
+                          day, 0, 0,
+                          day, 23, 59
+                        )
+                      }
+                    }
+                    event.color = c
+                    event.location = "- " + s.ClassName.toString()
+                    events.add(event)
+                    day = (day+1).rem(7)
+                    if (day==0) day = 7
+                  }
+              }
+              startDay==endDay -> {
+                  val event = WeekViewEvent(
+                    info.joinToString(","), s.ExamName,
+                    startDay, startHour, startMinute,
+                    endDay, endHour, endMinute
+                  )
+                  event.color = randomColor()
+                  event.location = "- " + s.ClassName.toString()
+                  events.add(event)
+              }
+              else -> {
+                  val c = randomColor()
+                  for (i in startDay..endDay+1) {
+                    val event : WeekViewEvent
+                    when (i) {
+                      startDay -> {
+                        event = WeekViewEvent(
+                          info.joinToString(","), s.ExamName,
+                          i, startHour, startMinute,
+                          i, 23, 59
+                        )
+                      }
+                      endDay -> {
+                        event = WeekViewEvent(
+                          info.joinToString(","), s.ExamName,
+                          i, 0, 0,
+                          i, endHour, endMinute
+                        )
+                      }
+                      else -> {
+                        event = WeekViewEvent(
+                          info.joinToString(","), s.ExamName,
+                          i, 0, 0,
+                          i, 23, 59
+                        )
+                      }
+                    }
+                    event.color = c
+                    event.location = "- " + s.ClassName.toString()
+                    events.add(event)
+                  }
+              }
           }
         }
         binding.revolvingWeekview.notifyDatasetChanged()
@@ -258,7 +279,7 @@ public class HomeScreenFragment :
     destIntent.putExtra("ExamID", info[0])
     destIntent.putExtra("DoingFlag", info[5])
     destIntent.putExtra("Duration", info[6])
-
+    destIntent.putExtra("Begin", info[7])
     startActivity(destIntent)
   }
 

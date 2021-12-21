@@ -87,13 +87,13 @@ public class EditGenderActivity :
     viewModel.editGenderLiveData.observe(this@EditGenderActivity) {
       if (it is SuccessResponse) {
         val response = it.getContentIfNotHandled()
-        onSuccessCreateLogin(it)
+        onSuccessEditGender(it)
       } else if (it is ErrorResponse) {
-        onErrorCreateLogin(it.data ?: Exception())
+        onErrorEditGender(it.data ?: Exception())
       }
     }
   }
-  private fun onSuccessCreateLogin(response: SuccessResponse<UpdateProfileResponse>): Unit {
+  private fun onSuccessEditGender(response: SuccessResponse<UpdateProfileResponse>): Unit {
     if (response.data.status?.Code=="200"){
       this@EditGenderActivity.hideKeyboard()
       finish()
@@ -107,7 +107,7 @@ public class EditGenderActivity :
       }
     }
   }
-  private fun onErrorCreateLogin(exception: Exception): Unit {
+  private fun onErrorEditGender(exception: Exception): Unit {
     when (exception) {
       is NoInternetConnection -> {
         Snackbar.make(binding.root, exception.message ?: "", Snackbar.LENGTH_LONG).show()

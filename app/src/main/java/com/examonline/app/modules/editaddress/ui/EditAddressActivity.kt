@@ -82,13 +82,13 @@ public class EditAddressActivity : BaseActivity<ActivityEditAddressBinding>(R.la
     viewModel.editAddressLiveData.observe(this@EditAddressActivity) {
       if (it is SuccessResponse) {
         val response = it.getContentIfNotHandled()
-        onSuccessCreateLogin(it)
+        onSuccessEditAddress(it)
       } else if (it is ErrorResponse) {
-        onErrorCreateLogin(it.data ?: Exception())
+        onErrorEditAddress(it.data ?: Exception())
       }
     }
   }
-  private fun onSuccessCreateLogin(response: SuccessResponse<UpdateProfileResponse>): Unit {
+  private fun onSuccessEditAddress(response: SuccessResponse<UpdateProfileResponse>): Unit {
     if (response.data.status?.Code=="200"){
       this@EditAddressActivity.hideKeyboard()
       finish()
@@ -102,7 +102,7 @@ public class EditAddressActivity : BaseActivity<ActivityEditAddressBinding>(R.la
       }
     }
   }
-  private fun onErrorCreateLogin(exception: Exception): Unit {
+  private fun onErrorEditAddress(exception: Exception): Unit {
     when (exception) {
       is NoInternetConnection -> {
         Snackbar.make(binding.root, exception.message ?: "", Snackbar.LENGTH_LONG).show()

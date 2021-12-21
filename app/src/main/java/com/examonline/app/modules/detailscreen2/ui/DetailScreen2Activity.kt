@@ -73,17 +73,17 @@ public class DetailScreen2Activity :
         viewModel.getMemOfClassLiveData.observe(this@DetailScreen2Activity) {
             if (it is SuccessResponse) {
                 response = it.getContentIfNotHandled()
-                onSuccessGetProfile(it)
+                onSuccessGetMemOfClass(it)
             } else if (it is ErrorResponse) {
-                onErrorCreateUser(it.data ?: Exception())
+                onErrorGetMemOfClass(it.data ?: Exception())
             }
         }
     }
 
-    private fun onSuccessGetProfile(response: SuccessResponse<GetMemOfClassResponse>) {
+    private fun onSuccessGetMemOfClass(response: SuccessResponse<GetMemOfClassResponse>) {
         viewModel.bindGetMemOfClassResponse(response.data)
     }
-    private fun onErrorCreateUser(exception: Exception): Unit {
+    private fun onErrorGetMemOfClass(exception: Exception): Unit {
         when (exception) {
             is NoInternetConnection -> {
                 Snackbar.make(binding.root, exception.message ?: "", Snackbar.LENGTH_LONG).show()

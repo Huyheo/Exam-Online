@@ -62,13 +62,13 @@ public class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.a
     viewModel.createLoginLiveData.observe(this@RegisterActivity) {
       if (it is SuccessResponse) {
         val response = it.getContentIfNotHandled()
-        onSuccessCreateLogin(it)
+        onSuccessCreateSignup(it)
       } else if (it is ErrorResponse) {
-        onErrorCreateLogin(it.data ?: Exception())
+        onErrorCreateSignup(it.data ?: Exception())
       }
     }
   }
-  private fun onSuccessCreateLogin(response: SuccessResponse<CreateSignupResponse>): Unit {
+  private fun onSuccessCreateSignup(response: SuccessResponse<CreateSignupResponse>): Unit {
     if (response.data.status?.Code=="200"){
       viewModel.bindCreateSignupResponse(response.data)
       val destIntent = LoginActivity.getIntent(this,null)
@@ -94,7 +94,7 @@ public class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.a
       binding.editUsername.requestFocus()
     }
   }
-  private fun onErrorCreateLogin(exception: Exception): Unit {
+  private fun onErrorCreateSignup(exception: Exception): Unit {
     when (exception) {
       is NoInternetConnection -> {
         Snackbar.make(binding.root, exception.message ?: "", Snackbar.LENGTH_LONG).show()

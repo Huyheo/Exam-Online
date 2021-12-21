@@ -97,13 +97,13 @@ public class EditNameActivity : BaseActivity<ActivityEditNameBinding>(R.layout.a
     viewModel.editNameLiveData.observe(this@EditNameActivity) {
       if (it is SuccessResponse) {
         val response = it.getContentIfNotHandled()
-        onSuccessCreateLogin(it)
+        onSuccessEditName(it)
       } else if (it is ErrorResponse) {
-        onErrorCreateLogin(it.data ?: Exception())
+        onErrorEditName(it.data ?: Exception())
       }
     }
   }
-  private fun onSuccessCreateLogin(response: SuccessResponse<UpdateProfileResponse>): Unit {
+  private fun onSuccessEditName(response: SuccessResponse<UpdateProfileResponse>): Unit {
     if (response.data.status?.Code=="200"){
       this@EditNameActivity.hideKeyboard()
       finish()
@@ -117,7 +117,7 @@ public class EditNameActivity : BaseActivity<ActivityEditNameBinding>(R.layout.a
       }
     }
   }
-  private fun onErrorCreateLogin(exception: Exception): Unit {
+  private fun onErrorEditName(exception: Exception): Unit {
     when (exception) {
       is NoInternetConnection -> {
         Snackbar.make(binding.root, exception.message ?: "", Snackbar.LENGTH_LONG).show()

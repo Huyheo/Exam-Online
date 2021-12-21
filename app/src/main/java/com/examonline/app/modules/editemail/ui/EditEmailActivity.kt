@@ -88,13 +88,13 @@ public class EditEmailActivity :
     viewModel.editEmailLiveData.observe(this@EditEmailActivity) {
       if (it is SuccessResponse) {
         val response = it.getContentIfNotHandled()
-        onSuccessCreateLogin(it)
+        onSuccessEditEmail(it)
       } else if (it is ErrorResponse) {
-        onErrorCreateLogin(it.data ?: Exception())
+        onErrorEditEmail(it.data ?: Exception())
       }
     }
   }
-  private fun onSuccessCreateLogin(response: SuccessResponse<UpdateProfileResponse>): Unit {
+  private fun onSuccessEditEmail(response: SuccessResponse<UpdateProfileResponse>): Unit {
     if (response.data.status?.Code=="200"){
       this@EditEmailActivity.hideKeyboard()
       this@EditEmailActivity.alert(
@@ -115,7 +115,7 @@ public class EditEmailActivity :
       }
     }
   }
-  private fun onErrorCreateLogin(exception: Exception): Unit {
+  private fun onErrorEditEmail(exception: Exception): Unit {
     when (exception) {
       is NoInternetConnection -> {
         Snackbar.make(binding.root, exception.message ?: "", Snackbar.LENGTH_LONG).show()

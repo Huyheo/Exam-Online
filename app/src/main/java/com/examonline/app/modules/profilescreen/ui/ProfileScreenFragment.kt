@@ -157,7 +157,7 @@ public class ProfileScreenFragment :
         response = it.getContentIfNotHandled()
         onSuccessGetProfile(it)
       } else if (it is ErrorResponse) {
-        onErrorCreateUser(it.data ?: Exception())
+        onErrorGetProfile(it.data ?: Exception())
       }
     }
   }
@@ -165,7 +165,7 @@ public class ProfileScreenFragment :
   private fun onSuccessGetProfile(response: SuccessResponse<GetProfileResponse>): Unit {
     viewModel.bindCreateUserResponse(response.data)
   }
-  private fun onErrorCreateUser(exception: Exception): Unit {
+  private fun onErrorGetProfile(exception: Exception): Unit {
     when (exception) {
       is NoInternetConnection -> {
         Snackbar.make(binding.root, exception.message ?: "", Snackbar.LENGTH_LONG).show()

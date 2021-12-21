@@ -32,11 +32,6 @@ public class HistoryScreenFragment :
   private val viewModel: HistoryScreenVM by viewModels<HistoryScreenVM>()
   private val prefs: PreferenceHelper by inject()
 
-    override fun onStart() {
-        super.onStart()
-        viewModel.onCreateExams()
-    }
-
   public override fun setUpClicks(): Unit {
   }
 
@@ -63,6 +58,7 @@ public class HistoryScreenFragment :
     }
   }
   public override fun onInitialized(): Unit {
+    viewModel.onCreateExams()
     binding.refreshLayout.setOnRefreshListener {
       viewModel.onCreateExams()
       binding.refreshLayout.isRefreshing=false
@@ -107,17 +103,17 @@ public class HistoryScreenFragment :
         viewModel.getExamsLiveData.observe(this@HistoryScreenFragment) {
             if (it is SuccessResponse) {
                 val response = it.getContentIfNotHandled()
-                onSuccessGetProfile(it)
+                onSuccessGetResultExams(it)
             } else if (it is ErrorResponse) {
-                onErrorGetExams(it.data ?: Exception())
+                onErrorGetResultExams(it.data ?: Exception())
             }
         }
     }
 
-    private fun onSuccessGetProfile(response: SuccessResponse<GetResultExamsResponse>) {
+    private fun onSuccessGetResultExams(response: SuccessResponse<GetResultExamsResponse>) {
         viewModel.bindGetExamsResponse(response.data)
     }
-    private fun onErrorGetExams(exception: Exception): Unit {
+    private fun onErrorGetResultExams(exception: Exception): Unit {
         when (exception) {
             is NoInternetConnection -> {
                 Snackbar.make(binding.root, exception.message ?: "", Snackbar.LENGTH_LONG).show()

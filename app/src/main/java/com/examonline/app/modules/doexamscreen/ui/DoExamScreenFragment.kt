@@ -32,10 +32,6 @@ public class DoExamScreenFragment :
   private val viewModel: DoExamScreenVM by viewModels<DoExamScreenVM>()
   private val prefs: PreferenceHelper by inject()
 
-  override fun onStart() {
-    super.onStart()
-    viewModel.onCreateExams()
-  }
 
   public override fun setUpClicks(): Unit {
   }
@@ -57,6 +53,7 @@ public class DoExamScreenFragment :
         destIntent.putExtra("DoingFlag", item.DoingFlag)
         destIntent.putExtra("Expired", item.Expired)
         destIntent.putExtra("txtDuration", item.txtDuration)
+        destIntent.putExtra("Begin", item.Begin.toString())
         startActivity(destIntent)
       }
     }
@@ -65,6 +62,7 @@ public class DoExamScreenFragment :
 
   @SuppressLint("SetTextI18n")
   public override fun onInitialized(): Unit {
+    viewModel.onCreateExams()
     binding.refreshLayout.setOnRefreshListener {
       viewModel.onCreateExams()
       binding.refreshLayout.isRefreshing=false

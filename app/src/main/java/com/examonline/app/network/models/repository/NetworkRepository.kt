@@ -14,6 +14,8 @@ import com.examonline.app.network.models.getexam.GetExamResponse
 import com.examonline.app.network.models.getmemofclass.GetMemOfClassResponse
 import com.examonline.app.network.models.getprofile.GetProfileResponse
 import com.examonline.app.network.models.getresultexams.GetResultExamsResponse
+import com.examonline.app.network.models.resetpassword.ResetPasswordRequest
+import com.examonline.app.network.models.resetpassword.ResetPasswordResponse
 import com.examonline.app.network.models.resources.ErrorResponse
 import com.examonline.app.network.models.resources.Response
 import com.examonline.app.network.models.resources.SuccessResponse
@@ -193,6 +195,22 @@ public class NetworkRepository : KoinComponent {
         val isOnline = MyApp.getInstance().isOnline()
         if(isOnline) {
             SuccessResponse(retrofitServices.createSignup(createSignupRequest))
+        } else {
+            val internetException =
+                NoInternetConnection(MyApp.getInstance().getString(R.string.no_internet_connection))
+            ErrorResponse(internetException.message ?:errorMessage, internetException)
+        }
+    }
+    catch(e:Exception) {
+        e.printStackTrace()
+        ErrorResponse(e.message ?:errorMessage, e)
+    }
+
+    public suspend fun resetPassword(resetPasswordRequest: ResetPasswordRequest?):
+            Response<ResetPasswordResponse> = try {
+        val isOnline = MyApp.getInstance().isOnline()
+        if(isOnline) {
+            SuccessResponse(retrofitServices.resetPassword(resetPasswordRequest))
         } else {
             val internetException =
                 NoInternetConnection(MyApp.getInstance().getString(R.string.no_internet_connection))

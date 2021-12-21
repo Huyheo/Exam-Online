@@ -38,17 +38,7 @@ public class ClassesScreenFragment :
     private var response:GetClassesResponse?=null
     private val prefs: PreferenceHelper by inject()
 
-    override fun onStart() {
-        super.onStart()
-        viewModel.onCreateClasses()
-    }
-
   public override fun setUpClicks(): Unit {
-//    binding.floatingBtn.setOnClickListener {
-//      val destIntent = Intent(activity, JoinClassActivity::class.java)
-//      startActivity(destIntent)
-//    }
-
   }
 
 
@@ -66,17 +56,17 @@ public class ClassesScreenFragment :
         viewModel.getClassesLiveData.observe(this@ClassesScreenFragment) {
             if (it is SuccessResponse) {
                 response = it.getContentIfNotHandled()
-                onSuccessGetProfile(it)
+                onSuccessGetClasses(it)
             } else if (it is ErrorResponse) {
-                onErrorCreateUser(it.data ?: Exception())
+                onErrorCreateClasses(it.data ?: Exception())
             }
         }
     }
 
-    private fun onSuccessGetProfile(response: SuccessResponse<GetClassesResponse>) {
+    private fun onSuccessGetClasses(response: SuccessResponse<GetClassesResponse>) {
         viewModel.bindGetClassesResponse(response.data)
     }
-    private fun onErrorCreateUser(exception: Exception): Unit {
+    private fun onErrorCreateClasses(exception: Exception): Unit {
         when (exception) {
             is NoInternetConnection -> {
                 Snackbar.make(binding.root, exception.message ?: "", Snackbar.LENGTH_LONG).show()
@@ -121,6 +111,7 @@ public class ClassesScreenFragment :
 
   @SuppressLint("SetTextI18n")
   public override fun onInitialized(): Unit {
+      viewModel.onCreateClasses()
       binding.refreshLayout.setOnRefreshListener {
           viewModel.onCreateClasses()
           binding.refreshLayout.isRefreshing=false

@@ -2,11 +2,7 @@ package com.examonline.app.modules.login.ui
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import com.examonline.app.R
 import com.examonline.app.appcomponents.base.BaseActivity
 import com.examonline.app.modules.forgotpasword.ui.ForgotPaswordActivity
@@ -15,13 +11,11 @@ import com.examonline.app.modules.register.ui.RegisterActivity
 import kotlin.String
 import kotlin.Unit
 
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.examonline.app.MainActivity
 import com.examonline.app.appcomponents.di.MyApp
-import com.examonline.app.databinding.ActivityLoginBinding
 import com.examonline.app.extensions.*
 import com.examonline.app.network.models.createlogin.CreateLoginResponse
 import com.examonline.app.network.models.resources.ErrorResponse
@@ -29,10 +23,9 @@ import com.examonline.app.network.models.resources.SuccessResponse
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONObject
 import retrofit2.HttpException
-import java.util.regex.Pattern
-import android.util.Patterns
 import android.view.View
 import com.examonline.app.appcomponents.utility.PreferenceHelper
+import com.examonline.app.databinding.ActivityLoginBinding
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 

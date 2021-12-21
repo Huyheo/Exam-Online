@@ -14,6 +14,8 @@ public data class ForgotPaswordModel(
   /**
    * TODO Replace with dynamic value
    */
-  public var txtEmail: String? = MyApp.getInstance().resources.getString(R.string.lbl_email)
+  public var txtEmail: String? = MyApp.getInstance().resources.getString(R.string.lbl_email),
+  public var editEmail: String? = null,
+  public var editUsername:String? = null
 
 )

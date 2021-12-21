@@ -207,6 +207,11 @@
     <string name="lbl_expired">Expired!</string>
     <string name="level">Level</string>
     <string name="type">Type</string>
+    <string name="lbl_upcoming">Upcoming</string>
+    <string name="msg_notime">It\'s not time for the exam yet!</string>
+    <string name="lbl_notime">Not time yet</string>
+    <string name="msg_new_password">New password will be sent to your email</string>
+    <string name="lbl_reset_error">Reset Error</string>
 
 
 </resources>
