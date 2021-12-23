@@ -6,8 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.examonline.app.appcomponents.utility.PreferenceHelper
 import com.examonline.app.modules.classesscreen.`data`.model.ClassesScreenModel
 import com.examonline.app.modules.classesscreen.data.model.ClassesScreenRowModel
-import com.examonline.app.modules.login.data.model.LoginModel
-import com.examonline.app.network.models.createlogin.CreateLoginRequest
 import com.examonline.app.network.models.createlogin.CreateLoginResponse
 import com.examonline.app.network.models.getclasses.GetClassesResponse
 import com.examonline.app.network.models.getprofile.GetProfileResponse
@@ -42,7 +40,15 @@ public class ClassesScreenVM : ViewModel(),KoinComponent {
     val recyclerViewListValue = recyclerViewList.value
     recyclerViewList.value?.let { recyclerViewList.value!!.removeAll(it) }
     for (r in responseData.data!!){
-      val c = ClassesScreenRowModel(r.ClassName,r.TotalStudents,r.TeacherFullname,r.ClassID)
+      val c = ClassesScreenRowModel(
+        txtClassName = r.ClassName,
+        txtNumStudent = if (r.TotalStudents?.toInt()==1){
+                          r.TotalStudents + " student"
+                        } else{
+                          r.TotalStudents + " students"
+                        },
+        txtTeacherName = r.TeacherFullname,
+        classID = r.ClassID)
       recyclerViewListValue?.add(c)
     }
     recyclerViewList.value = recyclerViewListValue

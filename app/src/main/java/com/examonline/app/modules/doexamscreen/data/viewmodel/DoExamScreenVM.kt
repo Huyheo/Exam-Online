@@ -14,6 +14,8 @@ import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 public class DoExamScreenVM : ViewModel(), KoinComponent {
@@ -63,6 +65,11 @@ public class DoExamScreenVM : ViewModel(), KoinComponent {
             )
             recyclerViewListValue?.add(c)
         }
+        recyclerViewListValue?.sortWith(
+            compareBy {
+                LocalDateTime.parse(it.txtDateTime, DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy"))
+            })
+        recyclerViewListValue?.reverse()
         recyclerViewList.value = recyclerViewListValue
     }
 

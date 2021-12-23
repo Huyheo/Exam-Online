@@ -23,15 +23,12 @@ targetSdkVersion 30
 
 1. Retrofit- REST API Call
 https://square.github.io/retrofit/
-2. Glide - Image Loading and caching.
-https://github.com/bumptech/glide
 3. Material Design Components - Google's latest Material Components.
 https://material.io/develop/android
 4. koin - Dependency Injection
 https://insert-koin.io/
 ### App Navigation
 
-Check your app\'s UI from the AppNavigation screens of your app.
 ### Package Structure
 
 
@@ -40,17 +37,17 @@ Check your app\'s UI from the AppNavigation screens of your app.
 │ ├── di                 - Dependency Injection Components 
 │ │ └── MyApp.kt
 │ ├── network            - REST API Call setup
-│ │ ├── ResponseCode.kt
 │ │ └── RetrofitProvider.kt
 │ └── ui                 - Data Binding Utilities
 │     └── CustomBindingAdapter.kt
-├── constants            - Constant Files
-│ ├── IntegerConstants.kt
-│ └── StringConstants.kt
 ├── extensions           - Kotlin Extension Function Files
+│ ├── AlertDialogHelper.kt
+│ ├── CustomProgressDialog.kt
+│ ├── NetworkUtils.kt
+│ ├── ViewExtensions.kt
 │ └── Strings.kt
 ├── modules              - Application Specific code
-│ └── example            - A module of Application 
+│ └── example            - A module of Application
 │  ├── ui                - UI handling classes
 │  └── data              - Data Handling classes
 │    ├── viewmodel       - ViewModels for the UI
@@ -60,18 +57,3 @@ Check your app\'s UI from the AppNavigation screens of your app.
   ├── repository         - Network repository
   ├── resources          - Common classes for API
   └── RetrofitService.kt
-```
-### Fonts
-We were unable to find following Fonts, Please add manually to ```app/src/main/res/font``` and uncomment code in respective font family XML files.
-
-```
-dmsansbold700
-dmsansregular400
-nunitobold700
-nunitoregular400
-ubuntumedium500
-ubuntubold700
-ubuntulight300
-ubunturegular400
-poppinssemibold600
-```
