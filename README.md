@@ -14,7 +14,7 @@ compileSdkVersion 30
 
 buildToolsVersion "30.0.1"
 
-minSdkVersion 23
+minSdkVersion 24
 
 targetSdkVersion 30
 
