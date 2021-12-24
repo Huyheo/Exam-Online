@@ -23,10 +23,15 @@ targetSdkVersion 30
 
 1. Retrofit- REST API Call
 https://square.github.io/retrofit/
+2. Picasso - Image downloading and caching.
+https://github.com/square/picasso
 3. Material Design Components - Google's latest Material Components.
 https://material.io/develop/android
 4. koin - Dependency Injection
 https://insert-koin.io/
+5. WeekView - View event in week
+https://github.com/jlurena/revolvingweekview
+
 ### App Navigation
 
 ### Package Structure
