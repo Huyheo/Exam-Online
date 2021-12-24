@@ -74,5 +74,4 @@ https://github.com/jlurena/revolvingweekview
   ├── models             - Request/Response Models
   ├── repository         - Network repository
   ├── resources          - Common classes for API
-  └── Retrof![Screenshot_2021-12-19-03-09-33-23_ed85c2b5b45c96b91a8b41314711ff30](https://user-images.githubusercontent.com/45762333/147345436-0bf0ee16-0073-49c8-ba75-e7c8d7e2e0ca.jpg)
-itService.kt
+  └── RetrofitService.kt
